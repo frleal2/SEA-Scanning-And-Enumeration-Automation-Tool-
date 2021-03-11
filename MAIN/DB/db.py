@@ -45,6 +45,7 @@ class databaseHandler():
             'outputDataType': outputDataType
         }
         tool.insert_one(Tool_Specs)
+        print ("********** INSERTED INTO TABLE*****************")
         
 
         
