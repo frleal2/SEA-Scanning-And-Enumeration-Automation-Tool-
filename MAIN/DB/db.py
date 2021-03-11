@@ -3,7 +3,7 @@ from pymongo import MongoClient
 
 class databaseHandler():
 
-
+#Initialize connection
     def __init__(self):
         self.cluster = pymongo.MongoClient("mongodb+srv://Admin:12345@cluster0.4cco1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     
