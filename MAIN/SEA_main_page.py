@@ -13,6 +13,8 @@ from RunArea import *
 from DB.db import databaseHandler
 
 db = databaseHandler()
+db.build()
+#db.insertIntoTool("name", "description", "path", "Path", "Path", "Path")
 
 
 class Ui_MainWindow(object):

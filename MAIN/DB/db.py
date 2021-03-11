@@ -3,26 +3,48 @@ from pymongo import MongoClient
 
 class databaseHandler():
 
+
     def __init__(self):
         self.cluster = pymongo.MongoClient("mongodb+srv://Admin:12345@cluster0.4cco1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
     
     def build(self): 
-        db = self.cluster["SEA_TOOl"]   
-        collection1 = db["Tool_Specification"]
+        databases = self.cluster.list_database_names()
 
-        collection2 = db["Tool"]
+        db = "SEA_TOOl"
+
+        if db not in databases:
+            self.database = self.cluster["SEA_TOOl"]   
+            tool = self.database["Tool"]
         
-        Tool_Specs = {
+            Tool_Specs = {
                 'name': "",
                 'description': "",
                 'path': "",
                 'option': "", 
                 'outputElement': "",
                 'outputDataType': ""
-        }
-        
-        collection2.insert_one(Tool_Specs)
+            }
+            
+            tool.insert_one(Tool_Specs)
 
-        print("*************************DATABASE CREATED**********************")
+            print("*************************DATABASE CREATED**********************")
+
+        else:
+            self.database = self.cluster[db]
+            print("************************DATABASE ALREADY CREATED*****************")
+
+    def insertIntoTool(self, name, description, path, option, outputElement, outputDataType):
+        tool = self.database["Tool"]
+        
+        Tool_Specs = {
+            'name': name,
+            'description': description,
+            'path': path,
+            'option': option, 
+            'outputElement': outputElement,
+            'outputDataType': outputDataType
+        }
+        tool.insert_one(Tool_Specs)
+        
 
         
