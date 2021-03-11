@@ -6,11 +6,17 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from ToolListArea import *
 from RunArea import *
+from DB.db import databaseHandler
+
+db = databaseHandler()
+
 
 class Ui_MainWindow(object):
+
     def openWindow(self):
         self.window=QtWidgets.QMainWindow()
         self.ui=Ui_MainWindow1()
@@ -184,7 +190,6 @@ class Ui_MainWindow(object):
         self.tool_page_button.setText(_translate("MainWindow", "TOOL"))
         self.scan_page_button.setText(_translate("MainWindow", "Run"))
 
-#import nike_app_rc
 
 if __name__ == "__main__":
     import sys
