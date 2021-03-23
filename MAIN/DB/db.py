@@ -5,7 +5,7 @@ class databaseHandler():
 
 #Initialize connection
     def __init__(self):
-        self.cluster = pymongo.MongoClient("mongodb+srv://Admin:12345@cluster0.4cco1.mongodb.net/myFirstDatabase?retryWrites=true&w=majority")
+        self.cluster = pymongo.MongoClient("mongodb+srv://Admin:12345@cluster0.4cco1.mongodb.net/test?authSource=admin&replicaSet=atlas-2cze3m-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true")
     
     def build(self): 
         databases = self.cluster.list_database_names()
@@ -19,10 +19,9 @@ class databaseHandler():
             Tool_Specs = {
                 'name': "",
                 'description': "",
-                'path': "",
-                'option': "", 
-                'outputElement': "",
-                'outputDataType': ""
+                'path': "", 
+                'outputDataSpec': "",
+                'optionAndArgument': ""
             }
             
             tool.insert_one(Tool_Specs)
@@ -33,19 +32,20 @@ class databaseHandler():
             self.database = self.cluster[db]
             print("************************DATABASE ALREADY CREATED*****************")
 
-    def insertIntoTool(self, name, description, path, option, outputElement, outputDataType):
+    def insertIntoTool(self, name, description, path, outputDataSpecification, optionAndArg):
         tool = self.database["Tool"]
         
         Tool_Specs = {
             'name': name,
             'description': description,
             'path': path,
-            'option': option, 
-            'outputElement': outputElement,
-            'outputDataType': outputDataType
+            'outputDataSpec': outputDataSpecification,
+            'ouptionAndArgument': optionAndArg
         }
         tool.insert_one(Tool_Specs)
         print ("********** INSERTED INTO TABLE*****************")
+
+    def 
         
 
         
