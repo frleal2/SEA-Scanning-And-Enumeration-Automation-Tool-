@@ -45,7 +45,6 @@ class databaseHandler():
         tool.insert_one(Tool_Specs)
         print ("********** INSERTED INTO TABLE*****************")
 
-    def 
         
 
         

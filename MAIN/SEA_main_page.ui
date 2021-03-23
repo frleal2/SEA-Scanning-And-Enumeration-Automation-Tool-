@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1046</width>
-    <height>663</height>
+    <width>1000</width>
+    <height>500</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -121,7 +121,7 @@
           <item>
            <widget class="QLabel" name="label_12">
             <property name="text">
-             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600;&quot;&gt;SEA TOOL&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; font-size:24pt; font-weight:600; color:#ffffff;&quot;&gt;SEA TOOL&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
             </property>
            </widget>
           </item>
@@ -935,8 +935,23 @@ p, li { white-space: pre-wrap; }
                  <enum>QFrame::Raised</enum>
                 </property>
                 <layout class="QVBoxLayout" name="verticalLayout_12">
+                 <property name="spacing">
+                  <number>0</number>
+                 </property>
+                 <property name="leftMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="topMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="rightMargin">
+                  <number>0</number>
+                 </property>
+                 <property name="bottomMargin">
+                  <number>0</number>
+                 </property>
                  <item>
-                  <widget class="QGroupBox" name="ToolSpecification">
+                  <widget class="QFrame" name="ToolSpecification">
                    <property name="minimumSize">
                     <size>
                      <width>7</width>
@@ -949,15 +964,12 @@ p, li { white-space: pre-wrap; }
                      <height>230</height>
                     </size>
                    </property>
-                   <property name="title">
-                    <string>Tool Specification</string>
+                   <property name="styleSheet">
+                    <string notr="true"/>
                    </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
-                   <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="0,0,0">
+                   <layout class="QVBoxLayout" name="verticalLayout_13">
                     <property name="spacing">
-                     <number>30</number>
+                     <number>0</number>
                     </property>
                     <property name="leftMargin">
                      <number>0</number>
@@ -971,169 +983,333 @@ p, li { white-space: pre-wrap; }
                     <property name="bottomMargin">
                      <number>0</number>
                     </property>
-                    <item>
-                     <widget class="QFrame" name="left">
-                      <property name="minimumSize">
-                       <size>
-                        <width>450</width>
-                        <height>0</height>
-                       </size>
-                      </property>
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QLabel" name="tool_spe_title">
                       <property name="maximumSize">
                        <size>
-                        <width>450</width>
-                        <height>300</height>
-                       </size>
-                      </property>
-                      <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <widget class="QPlainTextEdit" name="tool_name">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>10</y>
-                         <width>211</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="plainText">
-                        <string>Tool Name</string>
-                       </property>
-                      </widget>
-                      <widget class="QPlainTextEdit" name="tool_description">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>50</y>
-                         <width>211</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="plainText">
-                        <string>Tool Description</string>
-                       </property>
-                      </widget>
-                      <widget class="QPlainTextEdit" name="tool_path">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>90</y>
-                         <width>211</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="plainText">
-                        <string>Tool Path
-</string>
-                       </property>
-                      </widget>
-                      <widget class="QPlainTextEdit" name="option_argument">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>130</y>
-                         <width>211</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="plainText">
-                        <string>Option and Argument
-</string>
-                       </property>
-                      </widget>
-                      <widget class="QPlainTextEdit" name="Output_data_spec">
-                       <property name="geometry">
-                        <rect>
-                         <x>10</x>
-                         <y>170</y>
-                         <width>211</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="plainText">
-                        <string>Output Data Specification
-</string>
-                       </property>
-                      </widget>
-                      <widget class="QPushButton" name="browse_path_button">
-                       <property name="geometry">
-                        <rect>
-                         <x>220</x>
-                         <y>90</y>
-                         <width>111</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="text">
-                        <string>Browse</string>
-                       </property>
-                      </widget>
-                      <widget class="QPushButton" name="add_option_argument">
-                       <property name="geometry">
-                        <rect>
-                         <x>220</x>
-                         <y>130</y>
-                         <width>111</width>
-                         <height>31</height>
-                        </rect>
-                       </property>
-                       <property name="text">
-                        <string>Add</string>
-                       </property>
-                      </widget>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QLabel" name="label_8">
-                      <property name="maximumSize">
-                       <size>
-                        <width>20</width>
+                        <width>16777215</width>
                         <height>20</height>
                        </size>
                       </property>
+                      <property name="styleSheet">
+                       <string notr="true"/>
+                      </property>
                       <property name="text">
-                       <string>OR</string>
+                       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Tool Specification&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                      </property>
+                      <property name="alignment">
+                       <set>Qt::AlignHCenter|Qt::AlignTop</set>
                       </property>
                      </widget>
                     </item>
                     <item>
-                     <widget class="QFrame" name="right">
+                     <widget class="QFrame" name="tool_specification_frame">
                       <property name="minimumSize">
                        <size>
-                        <width>450</width>
+                        <width>603</width>
                         <height>0</height>
                        </size>
                       </property>
                       <property name="maximumSize">
                        <size>
-                        <width>450</width>
-                        <height>16777215</height>
+                        <width>1232</width>
+                        <height>299</height>
                        </size>
                       </property>
                       <property name="frameShape">
-                       <enum>QFrame::StyledPanel</enum>
+                       <enum>QFrame::NoFrame</enum>
                       </property>
                       <property name="frameShadow">
                        <enum>QFrame::Raised</enum>
                       </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_13">
+                      <layout class="QHBoxLayout" name="horizontalLayout_4">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
                        <item>
-                        <widget class="QPlainTextEdit" name="tool_path_2">
-                         <property name="plainText">
-                          <string>Tool Specification File
-</string>
+                        <widget class="QFrame" name="frame_6">
+                         <property name="minimumSize">
+                          <size>
+                           <width>473</width>
+                           <height>0</height>
+                          </size>
                          </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>464</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::NoFrame</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QGridLayout" name="gridLayout">
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <item row="4" column="1">
+                           <widget class="QLineEdit" name="output_data_input">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(94, 94, 94);</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="0">
+                           <widget class="QLabel" name="label_8">
+                            <property name="text">
+                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Tool Name:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="7" column="1">
+                           <widget class="QPushButton" name="browse_path_button_2">
+                            <property name="styleSheet">
+                             <string notr="true">QPushButton {
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(85, 170, 255);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Add</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="0">
+                           <widget class="QLabel" name="label_14">
+                            <property name="text">
+                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Tool Path:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="6" column="0">
+                           <widget class="QLabel" name="label_19">
+                            <property name="text">
+                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Option and Argument:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="1">
+                           <widget class="QLineEdit" name="tool_description_input">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(255, 255, 255);
+font: 13pt &quot;.AppleSystemUIFont&quot;;
+border-color: rgb(94, 94, 94);</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="2" column="1">
+                           <widget class="QLineEdit" name="tool_path_input">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(94, 94, 94);</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="4" column="0">
+                           <widget class="QLabel" name="label_15">
+                            <property name="text">
+                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Output Data Specification:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="0" column="1">
+                           <widget class="QLineEdit" name="tool_name_input">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(255, 255, 255);
+font: 13pt &quot;.AppleSystemUIFont&quot;;
+border-color: rgb(94, 94, 94);</string>
+                            </property>
+                            <property name="text">
+                             <string/>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="6" column="1">
+                           <widget class="QLineEdit" name="option_arg_input">
+                            <property name="styleSheet">
+                             <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(94, 94, 94);</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="1" column="0">
+                           <widget class="QLabel" name="label_13">
+                            <property name="text">
+                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Tool Description:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                            </property>
+                           </widget>
+                          </item>
+                          <item row="3" column="1">
+                           <widget class="QPushButton" name="browse_path_button">
+                            <property name="maximumSize">
+                             <size>
+                              <width>16777204</width>
+                              <height>16777215</height>
+                             </size>
+                            </property>
+                            <property name="styleSheet">
+                             <string notr="true">QPushButton {
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(85, 170, 255);
+}</string>
+                            </property>
+                            <property name="text">
+                             <string>Browse</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
+                        </widget>
+                       </item>
+                       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+                        <widget class="QFrame" name="frame_8">
+                         <property name="maximumSize">
+                          <size>
+                           <width>70</width>
+                           <height>16777215</height>
+                          </size>
+                         </property>
+                         <property name="frameShape">
+                          <enum>QFrame::NoFrame</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <layout class="QVBoxLayout" name="verticalLayout_14">
+                          <property name="spacing">
+                           <number>0</number>
+                          </property>
+                          <property name="leftMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="topMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="rightMargin">
+                           <number>0</number>
+                          </property>
+                          <property name="bottomMargin">
+                           <number>0</number>
+                          </property>
+                          <item>
+                           <widget class="QLabel" name="label_17">
+                            <property name="maximumSize">
+                             <size>
+                              <width>20</width>
+                              <height>20</height>
+                             </size>
+                            </property>
+                            <property name="text">
+                             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;OR&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                            </property>
+                           </widget>
+                          </item>
+                         </layout>
                         </widget>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="browse_path_button_2">
-                         <property name="text">
-                          <string>Browse</string>
+                        <widget class="QFrame" name="frame_7">
+                         <property name="minimumSize">
+                          <size>
+                           <width>388</width>
+                           <height>0</height>
+                          </size>
                          </property>
+                         <property name="frameShape">
+                          <enum>QFrame::NoFrame</enum>
+                         </property>
+                         <property name="frameShadow">
+                          <enum>QFrame::Raised</enum>
+                         </property>
+                         <widget class="QLabel" name="label_18">
+                          <property name="geometry">
+                           <rect>
+                            <x>120</x>
+                            <y>20</y>
+                            <width>141</width>
+                            <height>16</height>
+                           </rect>
+                          </property>
+                          <property name="text">
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Tool Specification File:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                          </property>
+                         </widget>
+                         <widget class="QLineEdit" name="lineEdit_5">
+                          <property name="geometry">
+                           <rect>
+                            <x>60</x>
+                            <y>50</y>
+                            <width>281</width>
+                            <height>20</height>
+                           </rect>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(94, 94, 94);</string>
+                          </property>
+                          <property name="text">
+                           <string>c:/Home/Desktop...</string>
+                          </property>
+                         </widget>
+                         <widget class="QPushButton" name="browse_path_button_3">
+                          <property name="geometry">
+                           <rect>
+                            <x>50</x>
+                            <y>80</y>
+                            <width>297</width>
+                            <height>24</height>
+                           </rect>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777204</width>
+                            <height>16777215</height>
+                           </size>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QPushButton {
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(85, 170, 255);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>Browse</string>
+                          </property>
+                         </widget>
                         </widget>
                        </item>
                       </layout>
@@ -1143,12 +1319,12 @@ p, li { white-space: pre-wrap; }
                   </widget>
                  </item>
                  <item>
-                  <widget class="QGroupBox" name="ToolDependency">
-                   <property name="title">
-                    <string>Tool Dependency</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
+                  <widget class="QFrame" name="ToolDependency">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>149</height>
+                    </size>
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_10" stretch="0">
                     <property name="spacing">
@@ -1192,108 +1368,138 @@ p, li { white-space: pre-wrap; }
                        </property>
                        <item>
                         <widget class="QFrame" name="frame_4">
+                         <property name="minimumSize">
+                          <size>
+                           <width>1</width>
+                           <height>0</height>
+                          </size>
+                         </property>
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>190</height>
+                          </size>
+                         </property>
                          <property name="frameShape">
-                          <enum>QFrame::StyledPanel</enum>
+                          <enum>QFrame::NoFrame</enum>
                          </property>
                          <property name="frameShadow">
                           <enum>QFrame::Raised</enum>
                          </property>
-                         <widget class="QComboBox" name="comboBox_5">
+                         <widget class="QComboBox" name="comboBox_6">
                           <property name="geometry">
                            <rect>
-                            <x>20</x>
-                            <y>35</y>
+                            <x>50</x>
+                            <y>30</y>
                             <width>141</width>
                             <height>31</height>
                            </rect>
                           </property>
                           <property name="styleSheet">
-                           <string notr="true">font: 13pt &quot;.AppleSystemUIFont&quot;;
-</string>
+                           <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(94, 94, 94);</string>
                           </property>
-                          <property name="editable">
-                           <bool>false</bool>
-                          </property>
-                          <property name="currentText">
-                           <string/>
-                          </property>
-                          <property name="currentIndex">
-                           <number>-1</number>
-                          </property>
+                          <item>
+                           <property name="text">
+                            <string>Dependent Data</string>
+                           </property>
+                          </item>
                          </widget>
-                         <widget class="QPlainTextEdit" name="plainTextEdit_6">
+                         <widget class="QPushButton" name="pushButton_8">
                           <property name="geometry">
                            <rect>
-                            <x>430</x>
-                            <y>40</y>
-                            <width>171</width>
-                            <height>21</height>
-                           </rect>
-                          </property>
-                          <property name="plainText">
-                           <string>Value</string>
-                          </property>
-                         </widget>
-                         <widget class="QComboBox" name="comboBox_6">
-                          <property name="geometry">
-                           <rect>
-                            <x>230</x>
-                            <y>35</y>
-                            <width>141</width>
+                            <x>840</x>
+                            <y>30</y>
+                            <width>71</width>
                             <height>31</height>
                            </rect>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QPushButton {
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(85, 170, 255);
+}</string>
+                          </property>
+                          <property name="text">
+                           <string>Add</string>
                           </property>
                          </widget>
                          <widget class="QPushButton" name="pushButton_7">
                           <property name="geometry">
                            <rect>
-                            <x>655</x>
-                            <y>35</y>
+                            <x>730</x>
+                            <y>30</y>
                             <width>91</width>
                             <height>32</height>
                            </rect>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">QPushButton {
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(85, 170, 255);
+}</string>
                           </property>
                           <property name="text">
                            <string>Remove</string>
                           </property>
                          </widget>
-                         <widget class="QLabel" name="label_2">
+                         <widget class="QComboBox" name="comboBox_7">
                           <property name="geometry">
                            <rect>
-                            <x>30</x>
-                            <y>40</y>
-                            <width>111</width>
-                            <height>16</height>
-                           </rect>
-                          </property>
-                          <property name="text">
-                           <string>Dependent Data</string>
-                          </property>
-                         </widget>
-                         <widget class="QLabel" name="label_9">
-                          <property name="geometry">
-                           <rect>
-                            <x>240</x>
-                            <y>40</y>
-                            <width>111</width>
-                            <height>16</height>
-                           </rect>
-                          </property>
-                          <property name="text">
-                           <string>Operator</string>
-                          </property>
-                         </widget>
-                         <widget class="QPushButton" name="pushButton_8">
-                          <property name="geometry">
-                           <rect>
-                            <x>360</x>
-                            <y>70</y>
-                            <width>71</width>
+                            <x>280</x>
+                            <y>30</y>
+                            <width>141</width>
                             <height>31</height>
                            </rect>
                           </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(94, 94, 94);</string>
+                          </property>
+                          <item>
+                           <property name="text">
+                            <string>Operator</string>
+                           </property>
+                          </item>
+                         </widget>
+                         <widget class="QPlainTextEdit" name="plainTextEdit_6">
+                          <property name="geometry">
+                           <rect>
+                            <x>480</x>
+                            <y>30</y>
+                            <width>221</width>
+                            <height>21</height>
+                           </rect>
+                          </property>
+                          <property name="styleSheet">
+                           <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(94, 94, 94);</string>
+                          </property>
+                          <property name="plainText">
+                           <string>Value</string>
+                          </property>
+                         </widget>
+                         <widget class="QLabel" name="Tool_dependency_title">
+                          <property name="geometry">
+                           <rect>
+                            <x>420</x>
+                            <y>0</y>
+                            <width>111</width>
+                            <height>16</height>
+                           </rect>
+                          </property>
+                          <property name="maximumSize">
+                           <size>
+                            <width>16777215</width>
+                            <height>20</height>
+                           </size>
+                          </property>
                           <property name="text">
-                           <string>Add</string>
+                           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ffffff;&quot;&gt;Tool Dependency&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                           </property>
                          </widget>
                         </widget>
@@ -1306,110 +1512,31 @@ p, li { white-space: pre-wrap; }
                  </item>
                  <item>
                   <widget class="QFrame" name="frame_5">
+                   <property name="maximumSize">
+                    <size>
+                     <width>16777215</width>
+                     <height>55</height>
+                    </size>
+                   </property>
                    <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
+                    <enum>QFrame::NoFrame</enum>
                    </property>
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <widget class="QComboBox" name="comboBox_7">
-                    <property name="geometry">
-                     <rect>
-                      <x>20</x>
-                      <y>35</y>
-                      <width>141</width>
-                      <height>31</height>
-                     </rect>
-                    </property>
-                    <property name="styleSheet">
-                     <string notr="true">font: 13pt &quot;.AppleSystemUIFont&quot;;
-</string>
-                    </property>
-                    <property name="editable">
-                     <bool>false</bool>
-                    </property>
-                    <property name="currentText">
-                     <string/>
-                    </property>
-                    <property name="currentIndex">
-                     <number>-1</number>
-                    </property>
-                   </widget>
-                   <widget class="QPlainTextEdit" name="plainTextEdit_18">
-                    <property name="geometry">
-                     <rect>
-                      <x>430</x>
-                      <y>40</y>
-                      <width>171</width>
-                      <height>21</height>
-                     </rect>
-                    </property>
-                    <property name="plainText">
-                     <string>Value</string>
-                    </property>
-                   </widget>
-                   <widget class="QComboBox" name="comboBox_8">
-                    <property name="geometry">
-                     <rect>
-                      <x>230</x>
-                      <y>35</y>
-                      <width>141</width>
-                      <height>31</height>
-                     </rect>
-                    </property>
-                   </widget>
-                   <widget class="QPushButton" name="pushButton_9">
-                    <property name="geometry">
-                     <rect>
-                      <x>655</x>
-                      <y>35</y>
-                      <width>91</width>
-                      <height>32</height>
-                     </rect>
-                    </property>
-                    <property name="text">
-                     <string>Remove</string>
-                    </property>
-                   </widget>
-                   <widget class="QLabel" name="label_10">
-                    <property name="geometry">
-                     <rect>
-                      <x>30</x>
-                      <y>40</y>
-                      <width>111</width>
-                      <height>16</height>
-                     </rect>
-                    </property>
-                    <property name="text">
-                     <string>Dependent Data</string>
-                    </property>
-                   </widget>
-                   <widget class="QLabel" name="label_11">
-                    <property name="geometry">
-                     <rect>
-                      <x>240</x>
-                      <y>40</y>
-                      <width>111</width>
-                      <height>16</height>
-                     </rect>
-                    </property>
-                    <property name="text">
-                     <string>Operator</string>
-                    </property>
-                   </widget>
-                   <widget class="QPushButton" name="pushButton_18">
-                    <property name="geometry">
-                     <rect>
-                      <x>360</x>
-                      <y>70</y>
-                      <width>71</width>
-                      <height>31</height>
-                     </rect>
-                    </property>
-                    <property name="text">
-                     <string>Add</string>
-                    </property>
-                   </widget>
+                   <layout class="QVBoxLayout" name="verticalLayout_15">
+                    <item>
+                     <widget class="QPlainTextEdit" name="plainTextEdit_18">
+                      <property name="styleSheet">
+                       <string notr="true">background-color: rgb(255, 255, 255);
+border-color: rgb(94, 94, 94);</string>
+                      </property>
+                      <property name="plainText">
+                       <string>Dependency Expression</string>
+                      </property>
+                     </widget>
+                    </item>
+                   </layout>
                   </widget>
                  </item>
                  <item>
@@ -1421,35 +1548,51 @@ p, li { white-space: pre-wrap; }
                     </size>
                    </property>
                    <property name="frameShape">
-                    <enum>QFrame::StyledPanel</enum>
+                    <enum>QFrame::NoFrame</enum>
                    </property>
                    <property name="frameShadow">
                     <enum>QFrame::Raised</enum>
                    </property>
-                   <widget class="QPushButton" name="pushButton_2">
+                   <widget class="QPushButton" name="cancel_tool">
                     <property name="geometry">
                      <rect>
-                      <x>430</x>
-                      <y>10</y>
+                      <x>340</x>
+                      <y>20</y>
                       <width>71</width>
                       <height>31</height>
                      </rect>
                     </property>
-                    <property name="text">
-                     <string>Save</string>
-                    </property>
-                   </widget>
-                   <widget class="QPushButton" name="pushButton_3">
-                    <property name="geometry">
-                     <rect>
-                      <x>310</x>
-                      <y>10</y>
-                      <width>71</width>
-                      <height>31</height>
-                     </rect>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(85, 170, 255);
+}</string>
                     </property>
                     <property name="text">
                      <string>Cancel</string>
+                    </property>
+                   </widget>
+                   <widget class="QPushButton" name="save_tool_button">
+                    <property name="geometry">
+                     <rect>
+                      <x>550</x>
+                      <y>20</y>
+                      <width>71</width>
+                      <height>31</height>
+                     </rect>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true">QPushButton {
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(85, 170, 255);
+}</string>
+                    </property>
+                    <property name="text">
+                     <string>Save</string>
                     </property>
                    </widget>
                   </widget>
@@ -1505,6 +1648,9 @@ p, li { white-space: pre-wrap; }
                  </property>
                  <item>
                   <widget class="QGroupBox" name="tool_list">
+                   <property name="styleSheet">
+                    <string notr="true">font: 13pt &quot;.AppleSystemUIFont&quot;;</string>
+                   </property>
                    <property name="title">
                     <string>TOOL LIST</string>
                    </property>
@@ -1519,6 +1665,11 @@ p, li { white-space: pre-wrap; }
                         <width>621</width>
                         <height>0</height>
                        </size>
+                      </property>
+                      <property name="styleSheet">
+                       <string notr="true">QTableWidget {
+	color: rgb(255, 255, 255);
+}</string>
                       </property>
                       <property name="frameShape">
                        <enum>QFrame::StyledPanel</enum>
@@ -1768,6 +1919,14 @@ p, li { white-space: pre-wrap; }
                     </item>
                     <item>
                      <widget class="QPushButton" name="btn_add_tool">
+                      <property name="styleSheet">
+                       <string notr="true">QPushButton {
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(85, 170, 255);
+}</string>
+                      </property>
                       <property name="text">
                        <string>Add</string>
                       </property>
