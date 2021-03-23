@@ -8,7 +8,7 @@ import pandas as pd
 import sys 
 
 # GUI FILE
-from sea_main_page import Ui_MainWindow
+from SEA_main_page import Ui_MainWindow
 
 db = databaseHandler()
 db.build()
