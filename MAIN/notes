@@ -1,0 +1,39 @@
+SEA TO DO LIST
+
+- Make the tool path browse button work.
+- Tool List Table area needs to be populated
+- suggested to make it a larger text box with word-wrapping for larger commands
+- Tool Specification File: make it work to import a file by browse button. 
+
+
+GUI Tools
+
+Dark gray    background-color: rgb(35, 35, 35);
+Light gray    background-color: rgb(45, 45, 45);
+Text Boxes   background-color: rgb(146, 146, 146);
+
+##CODE TO CONVERT UI FILE INTO PY FILE###
+python3 -m PyQt5.uic.pyuic -x sea_main_page.ui -o sea_main_page.py
+
+## STYLESHEET FOR BUTTONS##
+QPushButton {
+	color: rgb(255, 255, 255);
+}
+QPushButton:hover {
+	background-color: rgb(85, 170, 255);
+}
+
+### ADD CUSTOM CODE TO TABLE ### 
+#### SET CUSTOM WIDTH FOR EACH COLUMN#####
+        self.tool_list_table.setColumnWidth(0, 200)
+        self.tool_list_table.setColumnWidth(1, 525)
+        self.tool_list_table.setColumnWidth(2, 150)
+
+#### TABLE CAN NOT BE EDITED #######
+self.tool_list_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+
+#### STYLESHEET FOR TABLE ####
+
+"QTableView::item:selected { color:white; background:#000000; font-weight:900; }"
+                           "QTableCornerButton::section { background-color:#232326; }"
+                           "QHeaderView::section { color:white; background-color:#232326; }"
