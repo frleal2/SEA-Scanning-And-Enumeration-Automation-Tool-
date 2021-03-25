@@ -1,5 +1,6 @@
 import pymongo
 from pymongo import MongoClient
+import pandas as pd
 
 class databaseHandler():
 
@@ -45,6 +46,8 @@ class databaseHandler():
         tool.insert_one(Tool_Specs)
         print ("********** INSERTED INTO TABLE*****************")
 
-        
-
+    def importData(self):
+        tool = self.database["Tool"]
+        data = pd.DataFrame(list(tool.find()))
+        return data
         

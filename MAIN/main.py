@@ -39,14 +39,15 @@ class MyWindow(QMainWindow):
         self.ui.save_tool_button.clicked.connect(self.saveToolInput)
         self.ui.save_tool_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool))
 
-        #TESTING PANDAS
-        #db.Tool.find()
+        #POPULATE TABLE 
+        self.populateTable()
 
         ## SHOW ==> MAIN WINDOW
         ########################################################################
         self.show()
         ## ==> END ##
 
+    ### METHOD TO SAVE TOOL INPUT INTO DATABASE ###
     def saveToolInput(self):
         doc = QtGui.QTextDocument()
 
@@ -73,8 +74,18 @@ class MyWindow(QMainWindow):
 
         db.insertIntoTool(toolName, toolDesc, toolPath, toolOutputDataSpec, optionArg)
 
-    
         
+    ### METHOD TO POPULATE TABLE FROM DATABASE ###
+    def populateTable(self):
+        tooldata = db.importData()
+        name_column = list(tooldata['name'])
+        description_column = list(tooldata['description'])
+        items = len(name_column)
+
+        for x in range(items):
+            self.ui.tool_list_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
+            self.ui.tool_list_table.setItem(x, 1, QTableWidgetItem(description_column[x]))
+
         
         
 
