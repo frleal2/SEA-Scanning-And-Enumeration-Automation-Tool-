@@ -42,6 +42,9 @@ class MyWindow(QMainWindow):
         #POPULATE TABLE 
         self.populateTable()
 
+        #BROWSE BUTTONS
+        self.ui.browse_path_button_3.clicked.connect(self.open)
+        self.ui.browse_path_button.clicked.connect(self.open1)
         ## SHOW ==> MAIN WINDOW
         ########################################################################
         self.show()
@@ -85,8 +88,17 @@ class MyWindow(QMainWindow):
         for x in range(items):
             self.ui.tool_list_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
             self.ui.tool_list_table.setItem(x, 1, QTableWidgetItem(description_column[x]))
+    
+    ### METHODS FOR THE BROWSE BUTTONS ###
+    def open(self):
+        path=QFileDialog.getOpenFileName(self,r'Open a file',r'/home/hiram/Documents/Tool_Specification/',r'All files(*.*)')
+        if path != ('',''):
+            print("File path:"+path[0])
 
-        
+    def open1(self):
+        path=QFileDialog.getOpenFileName(self,r'Open a file',r'/usr/bin/nmap',r'All files(*.*)')
+        if path != ('',''):
+            print("File path:"+path[0])    
         
 
 if __name__ == "__main__":
