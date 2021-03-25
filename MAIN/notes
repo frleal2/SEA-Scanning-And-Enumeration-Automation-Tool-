@@ -38,3 +38,20 @@ self.tool_list_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 "QTableView::item:selected { color:white; background:#000000; font-weight:900; }"
                            "QTableCornerButton::section { background-color:#232326; }"
                            "QHeaderView::section { color:white; background-color:#232326; }"
+
+
+------------------------------------------------------------------
+self.ui.browse_path_button_3.clicked.connect(self.open)
+
+        self.ui.browse_path_button.clicked.connect(self.open1)
+
+
+def open(self):
+        path=QFileDialog.getOpenFileName(self,r'Open a file',r'/home/hiram/Documents/Tool_Specification/',r'All files(*.*)')
+        if path != ('',''):
+            print("File path:"+path[0])
+
+    def open1(self):
+        path=QFileDialog.getOpenFileName(self,r'Open a file',r'/usr/bin/nmap',r'All files(*.*)')
+        if path != ('',''):
+            print("File path:"+path[0])
