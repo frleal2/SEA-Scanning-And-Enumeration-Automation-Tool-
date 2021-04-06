@@ -13,6 +13,8 @@ from SEA_main_page import Ui_MainWindow
 db = databaseHandler()
 db.build()
 
+file_path = ""
+
 class MyWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -48,6 +50,7 @@ class MyWindow(QMainWindow):
 
         #BROWSE BUTTONS
         self.ui.browse_path_button_3.clicked.connect(self.open)
+        
 
         self.ui.browse_path_button.clicked.connect(self.open1)
         
@@ -100,14 +103,14 @@ class MyWindow(QMainWindow):
         path=QFileDialog.getOpenFileName(self,r'Open a file',r'/home/hiram/Documents/Tool_Specification/',r'All files(*.*)')
         if path != ('',''):
             print("File path:"+path[0])
-            self.ui.tool_path_input.setText(path[0]) #This would print out the text/path to the empty line edit
-            print (self.ui.tool_path_input.text())
+            self.ui.lineEdit_5.setText(path[0])
         
 
     def open1(self):
         path=QFileDialog.getOpenFileName(self,r'Open a file',r'/usr/bin/nmap',r'All files(*.*)')
         if path != ('',''):
-            print("File path:"+path[0])    
+            print("File path:"+path[0])   
+            self.ui.tool_path_input.setText(path[0]) 
         
 
 if __name__ == "__main__":
