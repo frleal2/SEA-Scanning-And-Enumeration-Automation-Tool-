@@ -94,9 +94,23 @@ class MyWindow(QMainWindow):
         description_column = list(tooldata['description'])
         items = len(name_column)
 
+        
+
         for x in range(items):
+            remove_btn = QPushButton("Remove")
+            remove_btn.setStyleSheet("QPushButton {\n"
+                                        "    color: black;\n"
+                                        "    background-color: rgb(235,235,235);\n"
+                                        "    border: 0px solid;\n"
+                                        "}\n"
+                                        "QPushButton:hover {\n"
+                                        "    background-color: rgb(85, 170, 255);\n"
+                                        "}")
             self.ui.tool_list_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
             self.ui.tool_list_table.setItem(x, 1, QTableWidgetItem(description_column[x]))
+            self.ui.tool_list_table.setCellWidget(x, 2, remove_btn)
+        
+        
     
     ### METHODS FOR THE BROWSE BUTTONS ###
     def open(self):
