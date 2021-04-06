@@ -598,12 +598,37 @@ class Ui_MainWindow(object):
         self.gridLayout.setContentsMargins(0, 0, 0, 0)
         self.gridLayout.setSpacing(0)
         self.gridLayout.setObjectName("gridLayout")
+        self.label_19 = QtWidgets.QLabel(self.frame_6)
+        self.label_19.setObjectName("label_19")
+        self.gridLayout.addWidget(self.label_19, 6, 0, 1, 1)
+        self.label_14 = QtWidgets.QLabel(self.frame_6)
+        self.label_14.setObjectName("label_14")
+        self.gridLayout.addWidget(self.label_14, 2, 0, 1, 1)
         self.output_data_input = QtWidgets.QLineEdit(self.frame_6)
         self.output_data_input.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-color: rgb(94, 94, 94);\n"
 "color: black;")
         self.output_data_input.setObjectName("output_data_input")
         self.gridLayout.addWidget(self.output_data_input, 4, 1, 1, 1)
+        self.tool_path_input = QtWidgets.QLineEdit(self.frame_6)
+        self.tool_path_input.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.tool_path_input.setObjectName("tool_path_input")
+        self.gridLayout.addWidget(self.tool_path_input, 2, 1, 1, 1)
+        self.label_15 = QtWidgets.QLabel(self.frame_6)
+        self.label_15.setObjectName("label_15")
+        self.gridLayout.addWidget(self.label_15, 4, 0, 1, 1)
+        self.label_13 = QtWidgets.QLabel(self.frame_6)
+        self.label_13.setObjectName("label_13")
+        self.gridLayout.addWidget(self.label_13, 1, 0, 1, 1)
+        self.option_arg_input = QtWidgets.QLineEdit(self.frame_6)
+        self.option_arg_input.setMinimumSize(QtCore.QSize(0, 47))
+        self.option_arg_input.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.option_arg_input.setObjectName("option_arg_input")
+        self.gridLayout.addWidget(self.option_arg_input, 6, 1, 1, 1)
         self.tool_name_input = QtWidgets.QLineEdit(self.frame_6)
         self.tool_name_input.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-color: rgb(94, 94, 94);\n"
@@ -611,18 +636,12 @@ class Ui_MainWindow(object):
         self.tool_name_input.setText("")
         self.tool_name_input.setObjectName("tool_name_input")
         self.gridLayout.addWidget(self.tool_name_input, 0, 1, 1, 1)
-        self.tool_path_input = QtWidgets.QLineEdit(self.frame_6)
-        self.tool_path_input.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.tool_description_input = QtWidgets.QLineEdit(self.frame_6)
+        self.tool_description_input.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-color: rgb(94, 94, 94);\n"
 "color: black;")
-        self.tool_path_input.setObjectName("tool_path_input")
-        self.gridLayout.addWidget(self.tool_path_input, 2, 1, 1, 1)
-        self.label_14 = QtWidgets.QLabel(self.frame_6)
-        self.label_14.setObjectName("label_14")
-        self.gridLayout.addWidget(self.label_14, 2, 0, 1, 1)
-        self.label_15 = QtWidgets.QLabel(self.frame_6)
-        self.label_15.setObjectName("label_15")
-        self.gridLayout.addWidget(self.label_15, 4, 0, 1, 1)
+        self.tool_description_input.setObjectName("tool_description_input")
+        self.gridLayout.addWidget(self.tool_description_input, 1, 1, 1, 1)
         self.browse_path_button = QtWidgets.QPushButton(self.frame_6)
         self.browse_path_button.setMaximumSize(QtCore.QSize(16777204, 16777215))
         self.browse_path_button.setStyleSheet("QPushButton {\n"
@@ -633,21 +652,6 @@ class Ui_MainWindow(object):
 "}")
         self.browse_path_button.setObjectName("browse_path_button")
         self.gridLayout.addWidget(self.browse_path_button, 3, 1, 1, 1)
-        self.label_19 = QtWidgets.QLabel(self.frame_6)
-        self.label_19.setObjectName("label_19")
-        self.gridLayout.addWidget(self.label_19, 6, 0, 1, 1)
-        self.browse_path_button_2 = QtWidgets.QPushButton(self.frame_6)
-        self.browse_path_button_2.setStyleSheet("QPushButton {\n"
-"    color: rgb(255, 255, 255);\n"
-"}\n"
-"QPushButton:hover {\n"
-"    background-color: rgb(85, 170, 255);\n"
-"}")
-        self.browse_path_button_2.setObjectName("browse_path_button_2")
-        self.gridLayout.addWidget(self.browse_path_button_2, 7, 0, 1, 1)
-        self.label_13 = QtWidgets.QLabel(self.frame_6)
-        self.label_13.setObjectName("label_13")
-        self.gridLayout.addWidget(self.label_13, 1, 0, 1, 1)
         self.label_8 = QtWidgets.QLabel(self.frame_6)
         self.label_8.setObjectName("label_8")
         self.gridLayout.addWidget(self.label_8, 0, 0, 1, 1)
@@ -658,19 +662,20 @@ class Ui_MainWindow(object):
 "color: black;")
         self.option_arg_input_2.setObjectName("option_arg_input_2")
         self.gridLayout.addWidget(self.option_arg_input_2, 7, 1, 1, 1)
-        self.tool_description_input = QtWidgets.QLineEdit(self.frame_6)
-        self.tool_description_input.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-color: rgb(94, 94, 94);\n"
-"color: black;")
-        self.tool_description_input.setObjectName("tool_description_input")
-        self.gridLayout.addWidget(self.tool_description_input, 1, 1, 1, 1)
-        self.option_arg_input = QtWidgets.QLineEdit(self.frame_6)
-        self.option_arg_input.setMinimumSize(QtCore.QSize(0, 47))
-        self.option_arg_input.setStyleSheet("background-color: rgb(255, 255, 255);\n"
-"border-color: rgb(94, 94, 94);\n"
-"color: black;")
-        self.option_arg_input.setObjectName("option_arg_input")
-        self.gridLayout.addWidget(self.option_arg_input, 6, 1, 1, 1)
+        self.browse_path_button_2 = QtWidgets.QPushButton(self.frame_6)
+        self.browse_path_button_2.setStyleSheet("QPushButton {\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(85, 170, 255);\n"
+"}")
+        self.browse_path_button_2.setObjectName("browse_path_button_2")
+        self.gridLayout.addWidget(self.browse_path_button_2, 7, 0, 1, 1)
+        self.Announcer = QtWidgets.QLabel(self.frame_6)
+        self.Announcer.setMaximumSize(QtCore.QSize(16777215, 15))
+        self.Announcer.setText("")
+        self.Announcer.setObjectName("Announcer")
+        self.gridLayout.addWidget(self.Announcer, 8, 0, 1, 2)
         self.horizontalLayout_4.addWidget(self.frame_6)
         self.frame_8 = QtWidgets.QFrame(self.tool_specification_frame)
         self.frame_8.setMaximumSize(QtCore.QSize(70, 16777215))
@@ -951,19 +956,9 @@ class Ui_MainWindow(object):
         item.setTextAlignment(QtCore.Qt.AlignCenter)
         self.tool_list_table.setItem(0, 0, item)
         item = QtWidgets.QTableWidgetItem()
-
         item.setTextAlignment(QtCore.Qt.AlignCenter)
         self.tool_list_table.setItem(0, 2, item)
-
-        #### SET CUSTOM WIDTH FOR EACH COLUMN#####
-        self.tool_list_table.setColumnWidth(0, 200)
-        self.tool_list_table.setColumnWidth(1, 525)
-        self.tool_list_table.setColumnWidth(2, 150)
-
-        #### TABLE CAN NOT BE EDITED #######
-        self.tool_list_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-
-
+        self.tool_list_table.horizontalHeader().setDefaultSectionSize(200)
         self.verticalLayout_6.addWidget(self.tool_list_table)
         self.btn_add_tool = QtWidgets.QPushButton(self.tool_list)
         self.btn_add_tool.setStyleSheet("QPushButton {\n"
@@ -983,7 +978,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(0)
+        self.stackedWidget.setCurrentIndex(2)
         self.scan_result_tabs.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1057,13 +1052,13 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "ASK ABOUT THIS AREA... "))
         self.scan_result_tabs.setTabText(self.scan_result_tabs.indexOf(self.tab_2), _translate("MainWindow", "Tab 2"))
         self.tool_spe_title.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Specification</span></p></body></html>"))
+        self.label_19.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Option and Argument:</span></p></body></html>"))
         self.label_14.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Path:</span></p></body></html>"))
         self.label_15.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Output Data Specification:</span></p></body></html>"))
-        self.browse_path_button.setText(_translate("MainWindow", "Browse"))
-        self.label_19.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Option and Argument:</span></p></body></html>"))
-        self.browse_path_button_2.setText(_translate("MainWindow", "Add"))
         self.label_13.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Description:</span></p></body></html>"))
+        self.browse_path_button.setText(_translate("MainWindow", "Browse"))
         self.label_8.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Name:</span></p></body></html>"))
+        self.browse_path_button_2.setText(_translate("MainWindow", "Add"))
         self.label_17.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">OR</span></p></body></html>"))
         self.label_18.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Specification File:</span></p></body></html>"))
         self.lineEdit_5.setText(_translate("MainWindow", "c:/Home/Desktop..."))

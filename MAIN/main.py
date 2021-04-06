@@ -43,7 +43,6 @@ class MyWindow(QMainWindow):
         #SAVE TOOL INPUT INTO TOOL TABLE AT DATABASE
         self.ui.save_tool_button.clicked.connect(self.saveToolInput)
         self.ui.save_tool_button.clicked.connect(self.populateTable)
-        self.ui.save_tool_button.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool))
 
         #POPULATE TABLE 
         self.populateTable()
@@ -59,7 +58,7 @@ class MyWindow(QMainWindow):
         self.show()
         ## ==> END ##
 
-    ### METHOD TO SAVE TOOL INPUT INTO DATABASE ###
+    ### METHOD TO CHECK TOOL INPUT AND SAVE TOOL INPUT INTO DATABASE ###
     def saveToolInput(self):
         doc = QtGui.QTextDocument()
 
@@ -84,9 +83,41 @@ class MyWindow(QMainWindow):
         doc.setHtml(optionArg.text())
         optionArg = doc.toPlainText()
 
-        db.insertIntoTool(toolName, toolDesc, toolPath, toolOutputDataSpec, optionArg)
-
+        if toolName == "":
+            self.ui.Announcer.setStyleSheet("color: red")
+            self.ui.Announcer.setText("Missing Tool Name")
         
+        elif toolDesc == "":
+            self.ui.Announcer.setStyleSheet("color: red")
+            self.ui.Announcer.setText("Missing Tool Description")
+        
+        elif toolPath == "":
+            self.ui.Announcer.setStyleSheet("color: red")
+            self.ui.Announcer.setText("Missing Tool Path")
+        
+        elif toolOutputDataSpec == "":
+            self.ui.Announcer.setStyleSheet("color: red")
+            self.ui.Announcer.setText("Missing Tool Output Data Specification")
+        
+        elif optionArg == "":
+            self.ui.Announcer.setStyleSheet("color: red")
+            self.ui.Announcer.setText("Missing Tool Options and Arguments")
+        
+        else:
+            self.ui.Announcer.setStyleSheet("color: red")
+            self.ui.Announcer.setText("")
+            db.insertIntoTool(toolName, toolDesc, toolPath, toolOutputDataSpec, optionArg)
+            self.clearInputBoxes()
+            self.ui.stackedWidget.setCurrentWidget(self.ui.tool)
+    
+    ### METHOD TO CLEAR ALL INPUT BOXES AFTER SAVE BUTTON IS CLICKED
+    def clearInputBoxes(self):
+        self.ui.tool_name_input.setText("")
+        self.ui.tool_description_input.setText("")
+        self.ui.tool_path_input.setText("")
+        self.ui.output_data_input.setText("")
+        self.ui.option_arg_input.setText("")
+
     ### METHOD TO POPULATE TABLE FROM DATABASE ###
     def populateTable(self):
         tooldata = db.importData()
@@ -94,21 +125,19 @@ class MyWindow(QMainWindow):
         description_column = list(tooldata['description'])
         items = len(name_column)
 
-        
-
         for x in range(items):
-            remove_btn = QPushButton("Remove")
-            remove_btn.setStyleSheet("QPushButton {\n"
+            remove_btn = QPushButton("Remove")         #CREATES A BUTTON
+            remove_btn.setStyleSheet("QPushButton {\n" #STYLES THE BUTTON
                                         "    color: black;\n"
                                         "    background-color: rgb(235,235,235);\n"
                                         "    border: 0px solid;\n"
                                         "}\n"
                                         "QPushButton:hover {\n"
                                         "    background-color: rgb(85, 170, 255);\n"
-                                        "}")
+                                        "}")      
             self.ui.tool_list_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
             self.ui.tool_list_table.setItem(x, 1, QTableWidgetItem(description_column[x]))
-            self.ui.tool_list_table.setCellWidget(x, 2, remove_btn)
+            self.ui.tool_list_table.setCellWidget(x, 2, remove_btn) #ADDS A BUTTON IN EVERY ROW OF THE COLUMN
         
         
     
