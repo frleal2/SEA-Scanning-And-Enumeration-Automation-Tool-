@@ -35,6 +35,7 @@ class MyWindow(QMainWindow):
         self.ui.btn_add_tool.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool_specification))
 
         # PRESSED CANCEL BUTTON ON ADD TOOL PAGE GOES BACK TO TOOL PAGE
+        self.ui.cancel_tool.clicked.connect(self.clearInputBoxes)
         self.ui.cancel_tool.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool))
 
         # DETAILED VIEW BUTTON TAKES YOU TO THE DETAILED VIEW PAGE
@@ -126,7 +127,8 @@ class MyWindow(QMainWindow):
         items = len(name_column)
 
         for x in range(items):
-            remove_btn = QPushButton("Remove")         #CREATES A BUTTON
+            remove_btn = QPushButton("Remove")         #CREATES A REMOVE BUTTON
+            remove_btn.clicked.connect(self.onClickedRemove)
             remove_btn.setStyleSheet("QPushButton {\n" #STYLES THE BUTTON
                                         "    color: black;\n"
                                         "    background-color: rgb(235,235,235);\n"
@@ -134,12 +136,26 @@ class MyWindow(QMainWindow):
                                         "}\n"
                                         "QPushButton:hover {\n"
                                         "    background-color: rgb(85, 170, 255);\n"
-                                        "}")      
+                                        "}")    
+
+            update_btn = QPushButton("Update/Edit")         #CREATES AN UPDATE BUTTON
+            update_btn.setStyleSheet("QPushButton {\n" #STYLES THE BUTTON
+                                        "    color: black;\n"
+                                        "    background-color: rgb(235,235,235);\n"
+                                        "    border: 0px solid;\n"
+                                        "}\n"
+                                        "QPushButton:hover {\n"
+                                        "    background-color: rgb(85, 170, 255);\n"
+                                        "}")   
             self.ui.tool_list_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
             self.ui.tool_list_table.setItem(x, 1, QTableWidgetItem(description_column[x]))
-            self.ui.tool_list_table.setCellWidget(x, 2, remove_btn) #ADDS A BUTTON IN EVERY ROW OF THE COLUMN
-        
-        
+            self.ui.tool_list_table.setCellWidget(x, 2, remove_btn) #ADDS A REMOVE BUTTON IN EVERY ROW OF THE COLUMN
+            self.ui.tool_list_table.setCellWidget(x, 3, update_btn) #ADDS AN UPDATE BUTTON IN EVERY ROW OF THE COLUMN
+    
+    ### METHOD FOR BUTTONS IN TOOL LIST TABLE
+    def onClickedRemove(self):
+        remove_btn = self.sender()
+        print("this works")
     
     ### METHODS FOR THE BROWSE BUTTONS ###
     def open(self):

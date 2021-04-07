@@ -301,7 +301,7 @@ QPushButton:hover {
              <enum>QFrame::Plain</enum>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>3</number>
             </property>
             <widget class="QWidget" name="run">
              <property name="styleSheet">
@@ -2490,6 +2490,11 @@ border-radius: 10px</string>
                       <column>
                        <property name="text">
                         <string>Remove</string>
+                       </property>
+                      </column>
+                      <column>
+                       <property name="text">
+                        <string>Update/Edit</string>
                        </property>
                       </column>
                       <item row="0" column="0">
