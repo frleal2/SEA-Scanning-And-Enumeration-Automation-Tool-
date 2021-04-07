@@ -45,6 +45,14 @@ class databaseHandler():
         }
         tool.insert_one(Tool_Specs)
         print ("********** INSERTED INTO TABLE*****************")
+    
+    def deleteFromTool(self,name):
+        tool = self.database["Tool"]
+        some_query = {"name" : name}
+        
+        result = tool.delete_one( some_query )
+        print ("result:", type(result), "-- deleted count:", result.deleted_count)      
+
 
     def importData(self):
         tool = self.database["Tool"]

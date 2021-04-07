@@ -132,7 +132,7 @@ class MyWindow(QMainWindow):
         self.ui.output_data_input.setText("")
         self.ui.option_arg_input.setText("")
 
-    ### METHOD TO POPULATE TABLE FROM DATABASE ###
+    ### METHOD TO POPULATE TOOL LIST TABLE FROM DATABASE ###
     def populateTable(self):
         tooldata = db.importData()
         name_column = list(tooldata['name'])
@@ -141,7 +141,7 @@ class MyWindow(QMainWindow):
 
         for x in range(items):
             remove_btn = QPushButton("Remove")         #CREATES A REMOVE BUTTON
-            remove_btn.clicked.connect(self.onClickedRemove)
+            remove_btn.clicked.connect(lambda *args, row=x: self.onClickedRemove(row)) #GIVES THE ROW OF THE BUTTON
             remove_btn.setStyleSheet("QPushButton {\n" #STYLES THE BUTTON
                                         "    color: black;\n"
                                         "    background-color: rgb(235,235,235);\n"
@@ -149,7 +149,6 @@ class MyWindow(QMainWindow):
                                         "}\n"
                                         "QPushButton:hover {\n"
                                         "    background-color: rgb(85, 170, 255);\n"
-<<<<<<< HEAD
                                         "}")    
 
             update_btn = QPushButton("Update/Edit")         #CREATES AN UPDATE BUTTON
@@ -167,24 +166,13 @@ class MyWindow(QMainWindow):
             self.ui.tool_list_table.setCellWidget(x, 3, update_btn) #ADDS AN UPDATE BUTTON IN EVERY ROW OF THE COLUMN
     
     ### METHOD FOR BUTTONS IN TOOL LIST TABLE
-    def onClickedRemove(self):
-        remove_btn = self.sender()
-        print("this works")
+    def onClickedRemove(self,row):
+        name = self.ui.tool_list_table.item(row,0).text()
+        print(name)
+        db.deleteFromTool(name)
+        self.ui.tool_list_table.removeRow(row)
     
     ### METHODS FOR THE BROWSE BUTTONS ###
-=======
-                                        "}")
-            self.ui.tool_list_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
-            self.ui.tool_list_table.setItem(x, 1, QTableWidgetItem(description_column[x]))
-            self.ui.tool_list_table.setCellWidget(x, 2, remove_btn) #ADDS A BUTTON IN EVERY ROW OF THE COLUMN
-
-    #IMPORT FILE
-    def importFile(self):
-        file = QFileDialog.getOpenFileName(self,r'Open a file')
-
-
-    ### BROWSE BUTTON FORE THE TOOL SPECIFICATION ###
->>>>>>> eabe28a4d5abf2ea46456cd51df213907760783c
     def open(self):
         path = QFileDialog.getOpenFileName()
         print("File path:" + path[0])
