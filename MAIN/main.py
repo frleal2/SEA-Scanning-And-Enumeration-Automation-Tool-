@@ -14,7 +14,7 @@ db = databaseHandler()
 db.build()
 
 file_path = ""
-string_of_args = "" # THIS WILL BE USED TO GET THE FULL STRING OF ARGS - SEAN
+string_of_args = "" # THIS WILL BE USED TO GET THE FULL STRING OF ARGS
 
 class MyWindow(QMainWindow):
     def __init__(self):
@@ -54,10 +54,9 @@ class MyWindow(QMainWindow):
         #BROWSE BUTTONS
         self.ui.browse_path_button_3.clicked.connect(self.open)
 
-
         self.ui.browse_path_button.clicked.connect(self.open1)
 
-        # BROWSE BUTTONS OF CONFIGURATION FILE - SEAN
+        # BROWSE BUTTONS OF CONFIGURATION FILE
         self.ui.add_configuration_file_run.clicked.connect(self.open2)
 
         ## SHOW ==> MAIN WINDOW
@@ -157,29 +156,6 @@ class MyWindow(QMainWindow):
     def importFile(self):
         file = QFileDialog.getOpenFileName(self,r'Open a file')
 
-
-    ### METHODS FOR THE BROWSE BUTTONS ###
-    # def open(self):
-    #     path=QFileDialog.getOpenFileName(self,r'Open a file',r'/home/hiram/Documents/Tool_Specification/',r'All files(*.*)')
-    #     if path != ('',''):
-    #         print("File path:"+path[0])
-    #         self.ui.lineEdit_5.setText(path[0])
-    #         file = path[0]
-    #         with open(file, "r") as f:
-    #             print(f.readline())
-
-    def open1(self):
-        path=QFileDialog.getOpenFileName(self,r'Open a file',r'/usr/bin/nmap',r'All files(*.*)')
-        if path != ('',''):
-            print("File path:"+path[0])
-            self.ui.tool_path_input.setText(path[0])
-
-    # ### METHOD FOR ADDINGING THE PATH OF CONFIGURATION FILE - SEAN ###
-    # def open2(self):
-    #     path=QFileDialog.getOpenFileName(self,r'Open a file',r'/usr/bin/nmap',r'All files(*.*)')
-    #     if path != ('',''):
-    #         print("File path:"+path[0])
-    #         self.ui.configuration_file_selected_run_path.setText(path[0])
 
     ### BROWSE BUTTON FORE THE TOOL SPECIFICATION ###
     def open(self):
