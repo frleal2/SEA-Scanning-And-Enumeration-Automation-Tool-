@@ -32,22 +32,23 @@ class MyWindow(QMainWindow):
         # RUN PAGE
         self.ui.btn_run_2.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.run))
 
+            # DETAILED VIEW BUTTON TAKES YOU TO THE DETAILED VIEW PAGE
+        self.ui.detailed_view_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.detailed_view))
+
         # ADD TOOL PAGE
         self.ui.btn_add_tool.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool_specification))
 
-        # PRESSED CANCEL BUTTON ON ADD TOOL PAGE GOES BACK TO TOOL PAGE
+            # PRESSED CANCEL BUTTON ON ADD TOOL PAGE GOES BACK TO TOOL PAGE
         self.ui.cancel_tool.clicked.connect(self.clearInputBoxes)
         self.ui.cancel_tool.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool))
 
-        # DETAILED VIEW BUTTON TAKES YOU TO THE DETAILED VIEW PAGE
-        self.ui.detailed_view_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.detailed_view))
+            #SAVE TOOL INPUT INTO TOOL TABLE AT DATABASE
+        self.ui.save_tool_button.clicked.connect(self.saveToolInput)
+        self.ui.save_tool_button.clicked.connect(self.populateTable)
 
         # This is what I am working on - SEAN
         self.ui.browse_path_button_2.clicked.connect(self.stringOfArgs)
 
-        #SAVE TOOL INPUT INTO TOOL TABLE AT DATABASE
-        self.ui.save_tool_button.clicked.connect(self.saveToolInput)
-        self.ui.save_tool_button.clicked.connect(self.populateTable)
 
         #POPULATE TABLE
         self.populateTable()
@@ -152,6 +153,7 @@ class MyWindow(QMainWindow):
                                         "}")    
 
             update_btn = QPushButton("Update/Edit")         #CREATES AN UPDATE BUTTON
+            update_btn.clicked.connect(lambda *args, row=x: self.onClickedUpdate(row))
             update_btn.setStyleSheet("QPushButton {\n" #STYLES THE BUTTON
                                         "    color: black;\n"
                                         "    background-color: rgb(235,235,235);\n"
@@ -165,12 +167,74 @@ class MyWindow(QMainWindow):
             self.ui.tool_list_table.setCellWidget(x, 2, remove_btn) #ADDS A REMOVE BUTTON IN EVERY ROW OF THE COLUMN
             self.ui.tool_list_table.setCellWidget(x, 3, update_btn) #ADDS AN UPDATE BUTTON IN EVERY ROW OF THE COLUMN
     
-    ### METHOD FOR BUTTONS IN TOOL LIST TABLE
-    def onClickedRemove(self,row):
+    ### METHOD FOR UPDATE BUTTON IN TOOL LIST TABLE
+    def onClickedUpdate(self,row):
         name = self.ui.tool_list_table.item(row,0).text()
+
+        self.ui.stackedWidget.setCurrentWidget(self.ui.tool_update)
+
+        tooldata = db.importData()
+        #print(tooldata)
+        name_column = list(tooldata['name'])
+        description_column = list(tooldata['description'])
+        path_column = list(tooldata['path'])
+        outputDataSpec_column = list(tooldata['outputDataSpec'])
+        optionAndArgument_column = list(tooldata['ouptionAndArgument'])
+
+        self.ui.tool_name_input_2.setText(name_column[row])
+        self.ui.tool_name_input_2.textChanged.connect(self.onChanged1)
+
+        self.ui.tool_description_input_2.setText(description_column[row])
+        self.ui.tool_description_input_2.textChanged.connect(self.onChanged2)
+
+        self.ui.tool_path_input_2.setText(path_column[row])
+        self.ui.tool_path_input_2.textChanged.connect(self.onChanged3)
+
+        self.ui.output_data_input_2.setText(outputDataSpec_column[row])
+        self.ui.output_data_input_2.textChanged.connect(self.onChanged4)
+
+        self.ui.option_arg_input_3.setText(optionAndArgument_column[row])
+        self.ui.option_arg_input_3.textChanged.connect(self.onChanged5)
+
+        #THIS BUTTON UPDATES THE ALREADY SAVED TOOL
+        self.ui.save_tool_button_2.clicked.connect(lambda *args, name=name: self.updateTool(name))
+    
+    def onChanged1(self,text):
+        self.ui.tool_name_input_2.setText(text)
+
+    def onChanged2(self,text):
+        self.ui.tool_description_input_2.setText(text)
+
+    def onChanged3(self,text):
+        self.ui.tool_path_input_2.setText(text)
+    
+    def onChanged4(self,text):
+        self.ui.output_data_input_2.setText(text)
+
+    def onChanged5(self,text):
+        self.ui.option_arg_input_3.setText(text)
+    
+    ###METHOD TO GET UPDATED STRINGS FROM UPDATE OF TOOL
+    def updateTool(self,name):
+        toolName = self.ui.tool_name_input_2.text()
+        toolDesc = self.ui.tool_description_input_2.text()
+        toolPath = self.ui.tool_path_input_2.text()
+        toolOutputDataSpec = self.ui.output_data_input_2.text()
+        optionArg = self.ui.option_arg_input_3.text()
+
+        print(toolName, toolDesc, toolPath, toolOutputDataSpec, optionArg)
+        db.updateAtTool(name,toolName,toolDesc,toolPath,toolOutputDataSpec,optionArg)
+        self.populateTable()
+        self.ui.stackedWidget.setCurrentWidget(self.ui.tool)
+        
+        
+
+    ### METHOD FOR REMOVE BUTTON IN TOOL LIST TABLE
+    def onClickedRemove(self,row):
+        name = self.ui.tool_list_table.item(row,0).text() #GETTING THE NAME OF THE TOOL
         print(name)
-        db.deleteFromTool(name)
-        self.ui.tool_list_table.removeRow(row)
+        db.deleteFromTool(name)                           #DELETING DOCUMENT FROM CLUSTER
+        self.ui.tool_list_table.removeRow(row)            #DELETING ROW FROM TABLE
     
     ### METHODS FOR THE BROWSE BUTTONS ###
     def open(self):

@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1164, 599)
+        MainWindow.resize(1205, 617)
         MainWindow.setMinimumSize(QtCore.QSize(1000, 500))
         MainWindow.setStyleSheet("background-color: rgb(45, 45, 45);")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
@@ -974,13 +974,294 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.addWidget(self.tool_list)
         self.verticalLayout_5.addWidget(self.tool_area)
         self.stackedWidget.addWidget(self.tool)
+        self.tool_update = QtWidgets.QWidget()
+        self.tool_update.setObjectName("tool_update")
+        self.verticalLayout_29 = QtWidgets.QVBoxLayout(self.tool_update)
+        self.verticalLayout_29.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_29.setSpacing(0)
+        self.verticalLayout_29.setObjectName("verticalLayout_29")
+        self.frame_13 = QtWidgets.QFrame(self.tool_update)
+        self.frame_13.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_13.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_13.setObjectName("frame_13")
+        self.verticalLayout_13 = QtWidgets.QVBoxLayout(self.frame_13)
+        self.verticalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_13.setSpacing(0)
+        self.verticalLayout_13.setObjectName("verticalLayout_13")
+        self.ToolSpecification_2 = QtWidgets.QFrame(self.frame_13)
+        self.ToolSpecification_2.setMinimumSize(QtCore.QSize(7, 245))
+        self.ToolSpecification_2.setMaximumSize(QtCore.QSize(16777213, 349))
+        self.ToolSpecification_2.setStyleSheet("")
+        self.ToolSpecification_2.setObjectName("ToolSpecification_2")
+        self.verticalLayout_25 = QtWidgets.QVBoxLayout(self.ToolSpecification_2)
+        self.verticalLayout_25.setObjectName("verticalLayout_25")
+        self.tool_spe_title_2 = QtWidgets.QLabel(self.ToolSpecification_2)
+        self.tool_spe_title_2.setMaximumSize(QtCore.QSize(16777215, 20))
+        self.tool_spe_title_2.setStyleSheet("")
+        self.tool_spe_title_2.setAlignment(QtCore.Qt.AlignHCenter|QtCore.Qt.AlignTop)
+        self.tool_spe_title_2.setObjectName("tool_spe_title_2")
+        self.verticalLayout_25.addWidget(self.tool_spe_title_2)
+        self.tool_specification_frame_2 = QtWidgets.QFrame(self.ToolSpecification_2)
+        self.tool_specification_frame_2.setMinimumSize(QtCore.QSize(603, 190))
+        self.tool_specification_frame_2.setMaximumSize(QtCore.QSize(1232, 299))
+        self.tool_specification_frame_2.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.tool_specification_frame_2.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.tool_specification_frame_2.setObjectName("tool_specification_frame_2")
+        self.horizontalLayout_13 = QtWidgets.QHBoxLayout(self.tool_specification_frame_2)
+        self.horizontalLayout_13.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_13.setSpacing(0)
+        self.horizontalLayout_13.setObjectName("horizontalLayout_13")
+        self.frame_14 = QtWidgets.QFrame(self.tool_specification_frame_2)
+        self.frame_14.setMinimumSize(QtCore.QSize(473, 227))
+        self.frame_14.setMaximumSize(QtCore.QSize(464, 16777215))
+        self.frame_14.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_14.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_14.setObjectName("frame_14")
+        self.gridLayout_2 = QtWidgets.QGridLayout(self.frame_14)
+        self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.gridLayout_2.setSpacing(0)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.label_20 = QtWidgets.QLabel(self.frame_14)
+        self.label_20.setObjectName("label_20")
+        self.gridLayout_2.addWidget(self.label_20, 6, 0, 1, 1)
+        self.label_16 = QtWidgets.QLabel(self.frame_14)
+        self.label_16.setObjectName("label_16")
+        self.gridLayout_2.addWidget(self.label_16, 2, 0, 1, 1)
+        self.output_data_input_2 = QtWidgets.QLineEdit(self.frame_14)
+        self.output_data_input_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.output_data_input_2.setObjectName("output_data_input_2")
+        self.gridLayout_2.addWidget(self.output_data_input_2, 4, 1, 1, 1)
+        self.tool_path_input_2 = QtWidgets.QLineEdit(self.frame_14)
+        self.tool_path_input_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.tool_path_input_2.setObjectName("tool_path_input_2")
+        self.gridLayout_2.addWidget(self.tool_path_input_2, 2, 1, 1, 1)
+        self.label_21 = QtWidgets.QLabel(self.frame_14)
+        self.label_21.setObjectName("label_21")
+        self.gridLayout_2.addWidget(self.label_21, 4, 0, 1, 1)
+        self.label_22 = QtWidgets.QLabel(self.frame_14)
+        self.label_22.setObjectName("label_22")
+        self.gridLayout_2.addWidget(self.label_22, 1, 0, 1, 1)
+        self.option_arg_input_3 = QtWidgets.QLineEdit(self.frame_14)
+        self.option_arg_input_3.setMinimumSize(QtCore.QSize(0, 47))
+        self.option_arg_input_3.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.option_arg_input_3.setObjectName("option_arg_input_3")
+        self.gridLayout_2.addWidget(self.option_arg_input_3, 6, 1, 1, 1)
+        self.tool_name_input_2 = QtWidgets.QLineEdit(self.frame_14)
+        self.tool_name_input_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.tool_name_input_2.setText("")
+        self.tool_name_input_2.setObjectName("tool_name_input_2")
+        self.gridLayout_2.addWidget(self.tool_name_input_2, 0, 1, 1, 1)
+        self.tool_description_input_2 = QtWidgets.QLineEdit(self.frame_14)
+        self.tool_description_input_2.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.tool_description_input_2.setObjectName("tool_description_input_2")
+        self.gridLayout_2.addWidget(self.tool_description_input_2, 1, 1, 1, 1)
+        self.browse_path_button_4 = QtWidgets.QPushButton(self.frame_14)
+        self.browse_path_button_4.setMaximumSize(QtCore.QSize(16777204, 16777215))
+        self.browse_path_button_4.setStyleSheet("QPushButton {\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(85, 170, 255);\n"
+"}")
+        self.browse_path_button_4.setObjectName("browse_path_button_4")
+        self.gridLayout_2.addWidget(self.browse_path_button_4, 3, 1, 1, 1)
+        self.label_9 = QtWidgets.QLabel(self.frame_14)
+        self.label_9.setObjectName("label_9")
+        self.gridLayout_2.addWidget(self.label_9, 0, 0, 1, 1)
+        self.option_arg_input_4 = QtWidgets.QLineEdit(self.frame_14)
+        self.option_arg_input_4.setMinimumSize(QtCore.QSize(0, 4))
+        self.option_arg_input_4.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.option_arg_input_4.setObjectName("option_arg_input_4")
+        self.gridLayout_2.addWidget(self.option_arg_input_4, 7, 1, 1, 1)
+        self.browse_path_button_5 = QtWidgets.QPushButton(self.frame_14)
+        self.browse_path_button_5.setStyleSheet("QPushButton {\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(85, 170, 255);\n"
+"}")
+        self.browse_path_button_5.setObjectName("browse_path_button_5")
+        self.gridLayout_2.addWidget(self.browse_path_button_5, 7, 0, 1, 1)
+        self.Announcer_2 = QtWidgets.QLabel(self.frame_14)
+        self.Announcer_2.setMaximumSize(QtCore.QSize(16777215, 15))
+        self.Announcer_2.setText("")
+        self.Announcer_2.setObjectName("Announcer_2")
+        self.gridLayout_2.addWidget(self.Announcer_2, 8, 0, 1, 2)
+        self.horizontalLayout_13.addWidget(self.frame_14)
+        self.frame_15 = QtWidgets.QFrame(self.tool_specification_frame_2)
+        self.frame_15.setMaximumSize(QtCore.QSize(70, 16777215))
+        self.frame_15.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_15.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_15.setObjectName("frame_15")
+        self.verticalLayout_26 = QtWidgets.QVBoxLayout(self.frame_15)
+        self.verticalLayout_26.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_26.setSpacing(0)
+        self.verticalLayout_26.setObjectName("verticalLayout_26")
+        self.label_23 = QtWidgets.QLabel(self.frame_15)
+        self.label_23.setMaximumSize(QtCore.QSize(20, 20))
+        self.label_23.setObjectName("label_23")
+        self.verticalLayout_26.addWidget(self.label_23)
+        self.horizontalLayout_13.addWidget(self.frame_15, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
+        self.frame_18 = QtWidgets.QFrame(self.tool_specification_frame_2)
+        self.frame_18.setMinimumSize(QtCore.QSize(388, 0))
+        self.frame_18.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_18.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_18.setObjectName("frame_18")
+        self.label_24 = QtWidgets.QLabel(self.frame_18)
+        self.label_24.setGeometry(QtCore.QRect(120, 20, 141, 16))
+        self.label_24.setObjectName("label_24")
+        self.lineEdit_6 = QtWidgets.QLineEdit(self.frame_18)
+        self.lineEdit_6.setGeometry(QtCore.QRect(60, 50, 281, 20))
+        self.lineEdit_6.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.lineEdit_6.setObjectName("lineEdit_6")
+        self.browse_path_button_6 = QtWidgets.QPushButton(self.frame_18)
+        self.browse_path_button_6.setGeometry(QtCore.QRect(50, 80, 297, 24))
+        self.browse_path_button_6.setMaximumSize(QtCore.QSize(16777204, 16777215))
+        self.browse_path_button_6.setStyleSheet("QPushButton {\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(85, 170, 255);\n"
+"}")
+        self.browse_path_button_6.setObjectName("browse_path_button_6")
+        self.horizontalLayout_13.addWidget(self.frame_18)
+        self.verticalLayout_25.addWidget(self.tool_specification_frame_2)
+        self.verticalLayout_13.addWidget(self.ToolSpecification_2)
+        self.frame_19 = QtWidgets.QFrame(self.frame_13)
+        self.frame_19.setMaximumSize(QtCore.QSize(16777215, 90))
+        self.frame_19.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_19.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_19.setObjectName("frame_19")
+        self.verticalLayout_27 = QtWidgets.QVBoxLayout(self.frame_19)
+        self.verticalLayout_27.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_27.setSpacing(0)
+        self.verticalLayout_27.setObjectName("verticalLayout_27")
+        self.Tool_dependency_title_2 = QtWidgets.QLabel(self.frame_19)
+        self.Tool_dependency_title_2.setMaximumSize(QtCore.QSize(16777215, 20))
+        self.Tool_dependency_title_2.setObjectName("Tool_dependency_title_2")
+        self.verticalLayout_27.addWidget(self.Tool_dependency_title_2, 0, QtCore.Qt.AlignHCenter)
+        self.frame_20 = QtWidgets.QFrame(self.frame_19)
+        self.frame_20.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame_20.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_20.setObjectName("frame_20")
+        self.horizontalLayout_14 = QtWidgets.QHBoxLayout(self.frame_20)
+        self.horizontalLayout_14.setContentsMargins(25, -1, 25, -1)
+        self.horizontalLayout_14.setSpacing(65)
+        self.horizontalLayout_14.setObjectName("horizontalLayout_14")
+        self.comboBox_8 = QtWidgets.QComboBox(self.frame_20)
+        self.comboBox_8.setMaximumSize(QtCore.QSize(16777215, 22))
+        self.comboBox_8.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.comboBox_8.setObjectName("comboBox_8")
+        self.comboBox_8.addItem("")
+        self.horizontalLayout_14.addWidget(self.comboBox_8)
+        self.comboBox_9 = QtWidgets.QComboBox(self.frame_20)
+        self.comboBox_9.setMaximumSize(QtCore.QSize(16777215, 22))
+        self.comboBox_9.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.comboBox_9.setObjectName("comboBox_9")
+        self.comboBox_9.addItem("")
+        self.horizontalLayout_14.addWidget(self.comboBox_9)
+        self.plainTextEdit_7 = QtWidgets.QPlainTextEdit(self.frame_20)
+        self.plainTextEdit_7.setMaximumSize(QtCore.QSize(300, 22))
+        self.plainTextEdit_7.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.plainTextEdit_7.setObjectName("plainTextEdit_7")
+        self.horizontalLayout_14.addWidget(self.plainTextEdit_7)
+        self.pushButton_9 = QtWidgets.QPushButton(self.frame_20)
+        self.pushButton_9.setMaximumSize(QtCore.QSize(16777215, 22))
+        self.pushButton_9.setStyleSheet("QPushButton {\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(85, 170, 255);\n"
+"}")
+        self.pushButton_9.setObjectName("pushButton_9")
+        self.horizontalLayout_14.addWidget(self.pushButton_9)
+        self.verticalLayout_27.addWidget(self.frame_20)
+        self.pushButton_10 = QtWidgets.QPushButton(self.frame_19)
+        self.pushButton_10.setMinimumSize(QtCore.QSize(400, 0))
+        self.pushButton_10.setMaximumSize(QtCore.QSize(401, 16777215))
+        self.pushButton_10.setStyleSheet("QPushButton {\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(85, 170, 255);\n"
+"}")
+        self.pushButton_10.setObjectName("pushButton_10")
+        self.verticalLayout_27.addWidget(self.pushButton_10, 0, QtCore.Qt.AlignHCenter)
+        self.verticalLayout_13.addWidget(self.frame_19)
+        self.frame_21 = QtWidgets.QFrame(self.frame_13)
+        self.frame_21.setMaximumSize(QtCore.QSize(16777215, 55))
+        self.frame_21.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_21.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_21.setObjectName("frame_21")
+        self.verticalLayout_28 = QtWidgets.QVBoxLayout(self.frame_21)
+        self.verticalLayout_28.setContentsMargins(25, 0, 25, 0)
+        self.verticalLayout_28.setSpacing(0)
+        self.verticalLayout_28.setObjectName("verticalLayout_28")
+        self.plainTextEdit_19 = QtWidgets.QPlainTextEdit(self.frame_21)
+        self.plainTextEdit_19.setMaximumSize(QtCore.QSize(16777215, 40))
+        self.plainTextEdit_19.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+"border-color: rgb(94, 94, 94);\n"
+"color: black;")
+        self.plainTextEdit_19.setObjectName("plainTextEdit_19")
+        self.verticalLayout_28.addWidget(self.plainTextEdit_19)
+        self.verticalLayout_13.addWidget(self.frame_21)
+        self.frame_22 = QtWidgets.QFrame(self.frame_13)
+        self.frame_22.setMaximumSize(QtCore.QSize(16777215, 75))
+        self.frame_22.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_22.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_22.setObjectName("frame_22")
+        self.horizontalLayout_15 = QtWidgets.QHBoxLayout(self.frame_22)
+        self.horizontalLayout_15.setContentsMargins(72, -1, 72, -1)
+        self.horizontalLayout_15.setSpacing(130)
+        self.horizontalLayout_15.setObjectName("horizontalLayout_15")
+        self.cancel_tool_2 = QtWidgets.QPushButton(self.frame_22)
+        self.cancel_tool_2.setStyleSheet("QPushButton {\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(85, 170, 255);\n"
+"}")
+        self.cancel_tool_2.setObjectName("cancel_tool_2")
+        self.horizontalLayout_15.addWidget(self.cancel_tool_2)
+        self.save_tool_button_2 = QtWidgets.QPushButton(self.frame_22)
+        self.save_tool_button_2.setStyleSheet("QPushButton {\n"
+"    color: rgb(255, 255, 255);\n"
+"}\n"
+"QPushButton:hover {\n"
+"    background-color: rgb(85, 170, 255);\n"
+"}")
+        self.save_tool_button_2.setObjectName("save_tool_button_2")
+        self.horizontalLayout_15.addWidget(self.save_tool_button_2)
+        self.verticalLayout_13.addWidget(self.frame_22)
+        self.verticalLayout_29.addWidget(self.frame_13)
+        self.stackedWidget.addWidget(self.tool_update)
         self.verticalLayout_4.addWidget(self.stackedWidget)
         self.horizontalLayout_2.addWidget(self.pages)
         self.verticalLayout.addWidget(self.content)
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(3)
+        self.stackedWidget.setCurrentIndex(4)
         self.scan_result_tabs.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1087,6 +1368,27 @@ class Ui_MainWindow(object):
         self.tool_list_table.setSortingEnabled(False)
         self.tool_list_table.setSortingEnabled(__sortingEnabled)
         self.btn_add_tool.setText(_translate("MainWindow", "Add"))
+        self.tool_spe_title_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Specification</span></p></body></html>"))
+        self.label_20.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Option and Argument:</span></p></body></html>"))
+        self.label_16.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Path:</span></p></body></html>"))
+        self.label_21.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Output Data Specification:</span></p></body></html>"))
+        self.label_22.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Description:</span></p></body></html>"))
+        self.browse_path_button_4.setText(_translate("MainWindow", "Browse"))
+        self.label_9.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Name:</span></p></body></html>"))
+        self.browse_path_button_5.setText(_translate("MainWindow", "Add"))
+        self.label_23.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">OR</span></p></body></html>"))
+        self.label_24.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Specification File:</span></p></body></html>"))
+        self.lineEdit_6.setText(_translate("MainWindow", "c:/Home/Desktop..."))
+        self.browse_path_button_6.setText(_translate("MainWindow", "Browse"))
+        self.Tool_dependency_title_2.setText(_translate("MainWindow", "<html><head/><body><p><span style=\" color:#ffffff;\">Tool Dependency</span></p></body></html>"))
+        self.comboBox_8.setItemText(0, _translate("MainWindow", "Dependent Data"))
+        self.comboBox_9.setItemText(0, _translate("MainWindow", "Operator"))
+        self.plainTextEdit_7.setPlainText(_translate("MainWindow", "Value"))
+        self.pushButton_9.setText(_translate("MainWindow", "Remove"))
+        self.pushButton_10.setText(_translate("MainWindow", "Add"))
+        self.plainTextEdit_19.setPlainText(_translate("MainWindow", "Dependency Expression"))
+        self.cancel_tool_2.setText(_translate("MainWindow", "Cancel"))
+        self.save_tool_button_2.setText(_translate("MainWindow", "Update"))
 
 
 if __name__ == "__main__":
