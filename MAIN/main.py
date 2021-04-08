@@ -35,6 +35,14 @@ class MyWindow(QMainWindow):
         # ADD TOOL PAGE
         self.ui.btn_add_tool.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool_specification))
 
+        # CONSOLE OUTPUT
+        self.ui.add_config_run_btn_3.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.page))
+        self.ui.add_config_run_btn_3.clicked.connect(self.displayConsole)
+
+        #DISPLAY CURRENT CONSOLE
+        self.displayConsole()
+
+
         # PRESSED CANCEL BUTTON ON ADD TOOL PAGE GOES BACK TO TOOL PAGE
         self.ui.cancel_tool.clicked.connect(self.clearInputBoxes)
         self.ui.cancel_tool.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool))
@@ -149,7 +157,6 @@ class MyWindow(QMainWindow):
                                         "}\n"
                                         "QPushButton:hover {\n"
                                         "    background-color: rgb(85, 170, 255);\n"
-<<<<<<< HEAD
                                         "}")    
 
             update_btn = QPushButton("Update/Edit")         #CREATES AN UPDATE BUTTON
@@ -172,19 +179,6 @@ class MyWindow(QMainWindow):
         print("this works")
     
     ### METHODS FOR THE BROWSE BUTTONS ###
-=======
-                                        "}")
-            self.ui.tool_list_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
-            self.ui.tool_list_table.setItem(x, 1, QTableWidgetItem(description_column[x]))
-            self.ui.tool_list_table.setCellWidget(x, 2, remove_btn) #ADDS A BUTTON IN EVERY ROW OF THE COLUMN
-
-    #IMPORT FILE
-    def importFile(self):
-        file = QFileDialog.getOpenFileName(self,r'Open a file')
-
-
-    ### BROWSE BUTTON FORE THE TOOL SPECIFICATION ###
->>>>>>> eabe28a4d5abf2ea46456cd51df213907760783c
     def open(self):
         path = QFileDialog.getOpenFileName()
         print("File path:" + path[0])
@@ -213,6 +207,9 @@ class MyWindow(QMainWindow):
 
         with open(file, "r") as f:
             print(f.readline())
+
+    def displayConsole(self):
+        self.ui.console_output.appendPlainText("THIS IS THE CONSOLE DISPLAY SHIT")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)

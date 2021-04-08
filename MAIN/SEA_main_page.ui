@@ -301,7 +301,7 @@ QPushButton:hover {
              <enum>QFrame::Plain</enum>
             </property>
             <property name="currentIndex">
-             <number>3</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="run">
              <property name="styleSheet">
@@ -607,7 +607,7 @@ color: black;</string>
                       </property>
                       <layout class="QVBoxLayout" name="verticalLayout_16">
                        <property name="spacing">
-                        <number>-1</number>
+                        <number>6</number>
                        </property>
                        <property name="leftMargin">
                         <number>40</number>
@@ -1214,6 +1214,44 @@ QPushButton:hover {
               </item>
              </layout>
             </widget>
+            <widget class="QWidget" name="page">
+             <widget class="QFrame" name="verticalFrame">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>0</y>
+                <width>1091</width>
+                <height>431</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_13">
+               <item>
+                <widget class="QFrame" name="frame_13">
+                 <layout class="QVBoxLayout" name="verticalLayout_25">
+                  <item>
+                   <widget class="QPlainTextEdit" name="console_output">
+                    <property name="plainText">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+             <widget class="QFrame" name="verticalFrame">
+              <property name="geometry">
+               <rect>
+                <x>0</x>
+                <y>430</y>
+                <width>1091</width>
+                <height>121</height>
+               </rect>
+              </property>
+              <layout class="QVBoxLayout" name="verticalLayout_27"/>
+             </widget>
+            </widget>
             <widget class="QWidget" name="detailed_view">
              <layout class="QHBoxLayout" name="horizontalLayout_10">
               <property name="spacing">
@@ -1440,7 +1478,7 @@ border-radius: 10px</string>
                     <item>
                      <widget class="QTabWidget" name="scan_result_tabs">
                       <property name="currentIndex">
-                       <number>1</number>
+                       <number>0</number>
                       </property>
                       <widget class="QWidget" name="tab">
                        <attribute name="title">
