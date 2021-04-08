@@ -55,8 +55,9 @@ class MyWindow(QMainWindow):
 
         #BROWSE BUTTONS
         self.ui.browse_path_button_3.clicked.connect(self.open)
-
         self.ui.browse_path_button.clicked.connect(self.open1)
+        self.ui.browse_path_button_4.clicked.connect(self.open2)
+        self.ui.browse_path_button_6.clicked.connect(self.open3)
 
         # BROWSE BUTTONS OF CONFIGURATION FILE
         self.ui.add_configuration_file_run.clicked.connect(self.open2)
@@ -187,8 +188,8 @@ class MyWindow(QMainWindow):
         self.ui.tool_description_input_2.setText(description_column[row])
         self.ui.tool_description_input_2.textChanged.connect(self.onChanged2)
 
-        self.ui.tool_path_input_2.setText(path_column[row])
-        self.ui.tool_path_input_2.textChanged.connect(self.onChanged3)
+        #self.ui.tool_path_input_2.setText(path_column[row])
+        #self.ui.tool_path_input_2.textChanged.connect(self.onChanged3)
 
         self.ui.output_data_input_2.setText(outputDataSpec_column[row])
         self.ui.output_data_input_2.textChanged.connect(self.onChanged4)
@@ -201,6 +202,7 @@ class MyWindow(QMainWindow):
     
     def onChanged1(self,text):
         self.ui.tool_name_input_2.setText(text)
+        print(text)
 
     def onChanged2(self,text):
         self.ui.tool_description_input_2.setText(text)
@@ -227,8 +229,6 @@ class MyWindow(QMainWindow):
         self.populateTable()
         self.ui.stackedWidget.setCurrentWidget(self.ui.tool)
         
-        
-
     ### METHOD FOR REMOVE BUTTON IN TOOL LIST TABLE
     def onClickedRemove(self,row):
         name = self.ui.tool_list_table.item(row,0).text() #GETTING THE NAME OF THE TOOL
@@ -255,6 +255,24 @@ class MyWindow(QMainWindow):
         #
         # with open(file, "r") as f:
         #     print(f.readline())
+
+    def open2(self):
+        path = QFileDialog.getOpenFileName()
+        print("File path:" + path[0])
+        self.ui.tool_path_input_2.setText("HIIIII")
+        file = path[0]
+
+        with open(file, "r") as f:
+            print(f.readline())
+    
+    def open3(self):
+        path = QFileDialog.getOpenFileName()
+        print("File path:" + path[0])
+        self.ui.lineEdit_6.setText(path[0])
+        file = path[0]
+
+        with open(file, "r") as f:
+            print(f.readline())
 
     ### METHOD FOR ADDINGING THE PATH OF CONFIGURATION FILE ###
     def open2(self):
