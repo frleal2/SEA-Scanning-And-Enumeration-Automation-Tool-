@@ -586,10 +586,10 @@ class Ui_MainWindow(object):
         self.tool_specification_frame.setObjectName("tool_specification_frame")
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout(self.tool_specification_frame)
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_4.setSpacing(0)
+        self.horizontalLayout_4.setSpacing(33)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.frame_6 = QtWidgets.QFrame(self.tool_specification_frame)
-        self.frame_6.setMinimumSize(QtCore.QSize(473, 227))
+        self.frame_6.setMinimumSize(QtCore.QSize(615, 227))
         self.frame_6.setMaximumSize(QtCore.QSize(464, 16777215))
         self.frame_6.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frame_6.setFrameShadow(QtWidgets.QFrame.Raised)
@@ -627,6 +627,8 @@ class Ui_MainWindow(object):
         self.option_arg_input.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-color: rgb(94, 94, 94);\n"
 "color: black;")
+        self.option_arg_input.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignTop)
+        self.option_arg_input.setReadOnly(False)
         self.option_arg_input.setObjectName("option_arg_input")
         self.gridLayout.addWidget(self.option_arg_input, 6, 1, 1, 1)
         self.tool_name_input = QtWidgets.QLineEdit(self.frame_6)
@@ -643,7 +645,8 @@ class Ui_MainWindow(object):
         self.tool_description_input.setObjectName("tool_description_input")
         self.gridLayout.addWidget(self.tool_description_input, 1, 1, 1, 1)
         self.browse_path_button = QtWidgets.QPushButton(self.frame_6)
-        self.browse_path_button.setMaximumSize(QtCore.QSize(16777204, 16777215))
+        self.browse_path_button.setMinimumSize(QtCore.QSize(298, 0))
+        self.browse_path_button.setMaximumSize(QtCore.QSize(429, 16777215))
         self.browse_path_button.setStyleSheet("QPushButton {\n"
 "    color: rgb(255, 255, 255);\n"
 "}\n"
@@ -651,8 +654,9 @@ class Ui_MainWindow(object):
 "    background-color: rgb(85, 170, 255);\n"
 "}")
         self.browse_path_button.setObjectName("browse_path_button")
-        self.gridLayout.addWidget(self.browse_path_button, 3, 1, 1, 1)
+        self.gridLayout.addWidget(self.browse_path_button, 3, 1, 1, 1, QtCore.Qt.AlignHCenter)
         self.label_8 = QtWidgets.QLabel(self.frame_6)
+        self.label_8.setMinimumSize(QtCore.QSize(0, 0))
         self.label_8.setObjectName("label_8")
         self.gridLayout.addWidget(self.label_8, 0, 0, 1, 1)
         self.option_arg_input_2 = QtWidgets.QLineEdit(self.frame_6)
@@ -663,6 +667,7 @@ class Ui_MainWindow(object):
         self.option_arg_input_2.setObjectName("option_arg_input_2")
         self.gridLayout.addWidget(self.option_arg_input_2, 7, 1, 1, 1)
         self.browse_path_button_2 = QtWidgets.QPushButton(self.frame_6)
+        self.browse_path_button_2.setMaximumSize(QtCore.QSize(148, 16777215))
         self.browse_path_button_2.setStyleSheet("QPushButton {\n"
 "    color: rgb(255, 255, 255);\n"
 "}\n"
@@ -696,17 +701,33 @@ class Ui_MainWindow(object):
         self.frame_7.setFrameShape(QtWidgets.QFrame.NoFrame)
         self.frame_7.setFrameShadow(QtWidgets.QFrame.Raised)
         self.frame_7.setObjectName("frame_7")
-        self.label_18 = QtWidgets.QLabel(self.frame_7)
-        self.label_18.setGeometry(QtCore.QRect(120, 20, 141, 16))
+        self.verticalLayout_30 = QtWidgets.QVBoxLayout(self.frame_7)
+        self.verticalLayout_30.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_30.setSpacing(0)
+        self.verticalLayout_30.setObjectName("verticalLayout_30")
+        self.frame_25 = QtWidgets.QFrame(self.frame_7)
+        self.frame_25.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_25.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_25.setObjectName("frame_25")
+        self.verticalLayout_30.addWidget(self.frame_25)
+        self.frame_23 = QtWidgets.QFrame(self.frame_7)
+        self.frame_23.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_23.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_23.setObjectName("frame_23")
+        self.verticalLayout_31 = QtWidgets.QVBoxLayout(self.frame_23)
+        self.verticalLayout_31.setObjectName("verticalLayout_31")
+        self.label_18 = QtWidgets.QLabel(self.frame_23)
+        self.label_18.setMaximumSize(QtCore.QSize(16777215, 32))
+        self.label_18.setAlignment(QtCore.Qt.AlignCenter)
         self.label_18.setObjectName("label_18")
-        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame_7)
-        self.lineEdit_5.setGeometry(QtCore.QRect(60, 50, 281, 20))
+        self.verticalLayout_31.addWidget(self.label_18)
+        self.lineEdit_5 = QtWidgets.QLineEdit(self.frame_23)
         self.lineEdit_5.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "border-color: rgb(94, 94, 94);\n"
 "color: black;")
         self.lineEdit_5.setObjectName("lineEdit_5")
-        self.browse_path_button_3 = QtWidgets.QPushButton(self.frame_7)
-        self.browse_path_button_3.setGeometry(QtCore.QRect(50, 80, 297, 24))
+        self.verticalLayout_31.addWidget(self.lineEdit_5)
+        self.browse_path_button_3 = QtWidgets.QPushButton(self.frame_23)
         self.browse_path_button_3.setMaximumSize(QtCore.QSize(16777204, 16777215))
         self.browse_path_button_3.setStyleSheet("QPushButton {\n"
 "    color: rgb(255, 255, 255);\n"
@@ -715,6 +736,13 @@ class Ui_MainWindow(object):
 "    background-color: rgb(85, 170, 255);\n"
 "}")
         self.browse_path_button_3.setObjectName("browse_path_button_3")
+        self.verticalLayout_31.addWidget(self.browse_path_button_3)
+        self.verticalLayout_30.addWidget(self.frame_23)
+        self.frame_24 = QtWidgets.QFrame(self.frame_7)
+        self.frame_24.setFrameShape(QtWidgets.QFrame.NoFrame)
+        self.frame_24.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame_24.setObjectName("frame_24")
+        self.verticalLayout_30.addWidget(self.frame_24)
         self.horizontalLayout_4.addWidget(self.frame_7)
         self.verticalLayout_10.addWidget(self.tool_specification_frame)
         self.verticalLayout_12.addWidget(self.ToolSpecification)
@@ -1261,7 +1289,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(2)
         self.scan_result_tabs.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 

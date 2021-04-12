@@ -70,8 +70,9 @@ class MyWindow(QMainWindow):
 
     ### METHOD FOR ADDING THE STRING OF ARGS TO DISPLAY WITHIN THE  ###
     def stringOfArgs(self):
-        args = self.ui.option_arg_input_2
-        final = string_of_args + args + " "
+        args = self.ui.option_arg_input_2.text()
+        string_of_args = self.ui.option_arg_input.text()
+        final = string_of_args + " " + args
         self.ui.option_arg_input.setText(final)
 
     ### METHOD TO CHECK TOOL INPUT AND SAVE TOOL INPUT INTO DATABASE ###
