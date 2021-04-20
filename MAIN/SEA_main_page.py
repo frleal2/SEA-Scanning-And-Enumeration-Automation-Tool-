@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'sea_main_page.ui'
+# Form implementation generated from reading ui file 'SEA_main_page.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.4
 #
@@ -847,12 +847,15 @@ class Ui_MainWindow(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.tool_list = QtWidgets.QGroupBox(self.tool_area)
+        self.tool_list = QtWidgets.QFrame(self.tool_area)
         self.tool_list.setStyleSheet("font: 13pt \".AppleSystemUIFont\";")
-        self.tool_list.setAlignment(QtCore.Qt.AlignCenter)
         self.tool_list.setObjectName("tool_list")
         self.verticalLayout_6 = QtWidgets.QVBoxLayout(self.tool_list)
         self.verticalLayout_6.setObjectName("verticalLayout_6")
+        self.label_2 = QtWidgets.QLabel(self.tool_list)
+        self.label_2.setStyleSheet("color: white;")
+        self.label_2.setObjectName("label_2")
+        self.verticalLayout_6.addWidget(self.label_2, 0, QtCore.Qt.AlignHCenter)
         self.tool_list_table = QtWidgets.QTableWidget(self.tool_list)
         self.tool_list_table.setMinimumSize(QtCore.QSize(621, 0))
         self.tool_list_table.setStyleSheet("color: black;\n"
@@ -1261,7 +1264,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-        self.stackedWidget.setCurrentIndex(4)
+        self.stackedWidget.setCurrentIndex(3)
         self.scan_result_tabs.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
@@ -1355,7 +1358,7 @@ class Ui_MainWindow(object):
         self.plainTextEdit_18.setPlainText(_translate("MainWindow", "Dependency Expression"))
         self.cancel_tool.setText(_translate("MainWindow", "Cancel"))
         self.save_tool_button.setText(_translate("MainWindow", "Save"))
-        self.tool_list.setTitle(_translate("MainWindow", "TOOL LIST"))
+        self.label_2.setText(_translate("MainWindow", "Tool List"))
         item = self.tool_list_table.horizontalHeaderItem(0)
         item.setText(_translate("MainWindow", "Name of Tool"))
         item = self.tool_list_table.horizontalHeaderItem(1)

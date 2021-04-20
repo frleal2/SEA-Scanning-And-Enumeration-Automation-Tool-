@@ -3,12 +3,14 @@ from PyQt5 import QtCore, QtGui
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from DB.db import databaseHandler
+from PyQt5 import QtWidgets
 import pymongo
 import pandas as pd
 import sys
 
 # GUI FILE
 from SEA_main_page import Ui_MainWindow
+from Confirmation_Dialog import Ui_Dialog
 
 db = databaseHandler()
 db.build()
@@ -65,7 +67,25 @@ class MyWindow(QMainWindow):
         ########################################################################
         self.show()
         ## ==> END ##
+    
+    def confirmation_dialog(self, row):
+        Dialog = QtWidgets.QDialog()
+        ui = Ui_Dialog()
+        ui.setupUi(Dialog)
+        Dialog.show()
+        rsp = Dialog.exec_()
 
+        rsp == QtWidgets.QDialog.accepted
+
+        if rsp == 1:
+            self.onClickedRemove(row)
+        else:
+            print("false")
+
+      
+    
+    def printSomething(self):
+        print("something")
 
     ### METHOD FOR ADDING THE STRING OF ARGS TO DISPLAY WITHIN THE  ###
     def stringOfArgs(self):
@@ -142,7 +162,7 @@ class MyWindow(QMainWindow):
 
         for x in range(items):
             remove_btn = QPushButton("Remove")         #CREATES A REMOVE BUTTON
-            remove_btn.clicked.connect(lambda *args, row=x: self.onClickedRemove(row)) #GIVES THE ROW OF THE BUTTON
+            remove_btn.clicked.connect(lambda *args, row=x: self.confirmation_dialog(row)) #GIVES THE ROW OF THE BUTTON
             remove_btn.setStyleSheet("QPushButton {\n" #STYLES THE BUTTON
                                         "    color: black;\n"
                                         "    background-color: rgb(235,235,235);\n"
@@ -198,6 +218,9 @@ class MyWindow(QMainWindow):
 
         #THIS BUTTON UPDATES THE ALREADY SAVED TOOL
         self.ui.save_tool_button_2.clicked.connect(lambda *args, name=name: self.updateTool(name))
+
+        #THIS BUTTON CANCELS THE UPDATING FORM 
+        self.ui.cancel_tool_2.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool))
     
     def onChanged1(self,text):
         self.ui.tool_name_input_2.setText(text)
@@ -227,8 +250,6 @@ class MyWindow(QMainWindow):
         self.populateTable()
         self.ui.stackedWidget.setCurrentWidget(self.ui.tool)
         
-        
-
     ### METHOD FOR REMOVE BUTTON IN TOOL LIST TABLE
     def onClickedRemove(self,row):
         name = self.ui.tool_list_table.item(row,0).text() #GETTING THE NAME OF THE TOOL

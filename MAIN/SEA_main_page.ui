@@ -301,7 +301,7 @@ QPushButton:hover {
              <enum>QFrame::Plain</enum>
             </property>
             <property name="currentIndex">
-             <number>4</number>
+             <number>3</number>
             </property>
             <widget class="QWidget" name="run">
              <property name="styleSheet">
@@ -2238,17 +2238,21 @@ QPushButton:hover {
                   <number>0</number>
                  </property>
                  <item>
-                  <widget class="QGroupBox" name="tool_list">
+                  <widget class="QFrame" name="tool_list">
                    <property name="styleSheet">
                     <string notr="true">font: 13pt &quot;.AppleSystemUIFont&quot;;</string>
                    </property>
-                   <property name="title">
-                    <string>TOOL LIST</string>
-                   </property>
-                   <property name="alignment">
-                    <set>Qt::AlignCenter</set>
-                   </property>
                    <layout class="QVBoxLayout" name="verticalLayout_6">
+                    <item alignment="Qt::AlignHCenter">
+                     <widget class="QLabel" name="label_2">
+                      <property name="styleSheet">
+                       <string notr="true">color: white;</string>
+                      </property>
+                      <property name="text">
+                       <string>Tool List</string>
+                      </property>
+                     </widget>
+                    </item>
                     <item>
                      <widget class="QTableWidget" name="tool_list_table">
                       <property name="minimumSize">
