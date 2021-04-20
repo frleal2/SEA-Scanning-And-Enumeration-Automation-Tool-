@@ -1292,11 +1292,7 @@ class Ui_MainWindow(object):
         MainWindow.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(MainWindow)
-<<<<<<< HEAD
         self.stackedWidget.setCurrentIndex(3)
-=======
-        self.stackedWidget.setCurrentIndex(2)
->>>>>>> 23ce3b04435e4c2c602101cbc67ff04e34561d39
         self.scan_result_tabs.setCurrentIndex(1)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
