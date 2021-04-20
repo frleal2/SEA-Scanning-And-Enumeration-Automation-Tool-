@@ -57,8 +57,9 @@ class MyWindow(QMainWindow):
 
         #BROWSE BUTTONS
         self.ui.browse_path_button_3.clicked.connect(self.open)
-
         self.ui.browse_path_button.clicked.connect(self.open1)
+        self.ui.browse_path_button_4.clicked.connect(self.open2)
+        self.ui.browse_path_button_6.clicked.connect(self.open3)
 
         # BROWSE BUTTONS OF CONFIGURATION FILE
         self.ui.add_configuration_file_run.clicked.connect(self.open2)
@@ -89,8 +90,9 @@ class MyWindow(QMainWindow):
 
     ### METHOD FOR ADDING THE STRING OF ARGS TO DISPLAY WITHIN THE  ###
     def stringOfArgs(self):
-        args = self.ui.option_arg_input_2
-        final = string_of_args + args + " "
+        args = self.ui.option_arg_input_2.text()
+        string_of_args = self.ui.option_arg_input.text()
+        final = string_of_args + " " + args
         self.ui.option_arg_input.setText(final)
 
     ### METHOD TO CHECK TOOL INPUT AND SAVE TOOL INPUT INTO DATABASE ###
@@ -207,8 +209,8 @@ class MyWindow(QMainWindow):
         self.ui.tool_description_input_2.setText(description_column[row])
         self.ui.tool_description_input_2.textChanged.connect(self.onChanged2)
 
-        self.ui.tool_path_input_2.setText(path_column[row])
-        self.ui.tool_path_input_2.textChanged.connect(self.onChanged3)
+        #self.ui.tool_path_input_2.setText(path_column[row])
+        #self.ui.tool_path_input_2.textChanged.connect(self.onChanged3)
 
         self.ui.output_data_input_2.setText(outputDataSpec_column[row])
         self.ui.output_data_input_2.textChanged.connect(self.onChanged4)
@@ -224,6 +226,7 @@ class MyWindow(QMainWindow):
     
     def onChanged1(self,text):
         self.ui.tool_name_input_2.setText(text)
+        print(text)
 
     def onChanged2(self,text):
         self.ui.tool_description_input_2.setText(text)
@@ -276,6 +279,24 @@ class MyWindow(QMainWindow):
         #
         # with open(file, "r") as f:
         #     print(f.readline())
+
+    def open2(self):
+        path = QFileDialog.getOpenFileName()
+        print("File path:" + path[0])
+        self.ui.tool_path_input_2.setText("HIIIII")
+        file = path[0]
+
+        with open(file, "r") as f:
+            print(f.readline())
+    
+    def open3(self):
+        path = QFileDialog.getOpenFileName()
+        print("File path:" + path[0])
+        self.ui.lineEdit_6.setText(path[0])
+        file = path[0]
+
+        with open(file, "r") as f:
+            print(f.readline())
 
     ### METHOD FOR ADDINGING THE PATH OF CONFIGURATION FILE ###
     def open2(self):
