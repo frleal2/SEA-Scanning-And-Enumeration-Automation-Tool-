@@ -301,11 +301,7 @@ QPushButton:hover {
              <enum>QFrame::Plain</enum>
             </property>
             <property name="currentIndex">
-<<<<<<< HEAD
              <number>3</number>
-=======
-             <number>2</number>
->>>>>>> 23ce3b04435e4c2c602101cbc67ff04e34561d39
             </property>
             <widget class="QWidget" name="run">
              <property name="styleSheet">
