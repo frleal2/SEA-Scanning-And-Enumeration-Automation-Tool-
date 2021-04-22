@@ -45,6 +45,27 @@ class databaseHandler():
         }
         tool.insert_one(Tool_Specs)
         print ("********** INSERTED INTO TABLE*****************")
+    
+    def deleteFromTool(self,name):
+        tool = self.database["Tool"]
+        some_query = {"name" : name}
+        
+        result = tool.delete_one( some_query )
+        print ("result:", type(result), "-- deleted count:", result.deleted_count)    
+
+    def updateAtTool(self, name, name2, description, path, outputDataSpecification, optionAndARg):
+        print(name, name2)
+        tool = self.database["Tool"]
+        query = { "name": name }
+        newvalues = { "$set": { "name": name2,
+                                "description": description,
+                                "path": path,
+                                "outputDataSpec": outputDataSpecification,
+                                "ouptionAndArgument": optionAndARg} 
+                    }
+        result = tool.update_one(query, newvalues)
+        print ("acknowledged:", result.acknowledged)
+
 
     def importData(self):
         tool = self.database["Tool"]
