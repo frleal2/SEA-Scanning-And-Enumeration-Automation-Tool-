@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tool>
+    <name>NMapByXML</name>
+    <description>This is the NMap tool</description>
+    <path>/bin/NMap</path>
+    <options>
+        <pair>
+            <option>-o-</option>
+            <argument>output.txt</argument>
+        </pair>
+    </options>
+    <output>
+        <pair>
+            <dataElement>Element String</dataElement>
+            <dataType>Type String</dataType>
+        </pair>
+    </output>
+</tool>

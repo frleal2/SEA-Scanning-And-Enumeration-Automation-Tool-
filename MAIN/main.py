@@ -5,6 +5,7 @@ from PyQt5.QtCore import *
 from DB.db import databaseHandler
 import pymongo
 import pandas as pd
+import xml.etree.ElementTree as ET
 import sys
 
 # GUI FILE
@@ -178,12 +179,31 @@ class MyWindow(QMainWindow):
         remove_btn = self.sender()
         print("this works")
     
-    ### METHODS FOR THE BROWSE BUTTONS ###
+    ### METHODS FOR THE BROWSE BUTTONS ### USED TO GET XML CONFIG FILE
     def open(self):
         path = QFileDialog.getOpenFileName()
         print("File path:" + path[0])
         self.ui.lineEdit_5.setText(path[0])
         file = path[0]
+
+        ########XML PARSER#################
+        root = ET.parse(file).getroot()
+        Toolargs = []
+        x = 0
+        for child in root:
+            Toolargs.append(child.text)
+            print(child.text)
+        
+        Toolargs.append(root[3][0][0].text)
+        Toolargs.append(root[3][0][1].text)
+
+        db.insertIntoTool(Toolargs[0], Toolargs[1], Toolargs[2], Toolargs[5], Toolargs[6])
+        ###############################
+              
+        #for type_tag in root.findall('options'):
+        #    value = type_tag.get('argument')
+        #    print(value)
+
 
         with open(file, "r") as f:
             print(f.readline())
@@ -209,7 +229,7 @@ class MyWindow(QMainWindow):
             print(f.readline())
 
     def displayConsole(self):
-        self.ui.console_output.appendPlainText("THIS IS THE CONSOLE DISPLAY SHIT")
+        self.ui.console_output.appendPlainText("THIS IS THE CONSOLE DISPLAY ")
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
