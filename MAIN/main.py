@@ -80,13 +80,6 @@ class MyWindow(QMainWindow):
 
         if rsp == 1:
             self.onClickedRemove(row)
-        else:
-            print("false")
-
-      
-    
-    def printSomething(self):
-        print("something")
 
     ### METHOD FOR ADDING THE STRING OF ARGS TO DISPLAY WITHIN THE  ###
     def stringOfArgs(self):
