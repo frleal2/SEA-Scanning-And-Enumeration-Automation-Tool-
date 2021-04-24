@@ -5,6 +5,7 @@ from PyQt5.QtCore import *
 from DB.db import databaseHandler
 from PyQt5 import QtWidgets
 import pymongo
+import nmap
 import pandas as pd
 import sys
 
