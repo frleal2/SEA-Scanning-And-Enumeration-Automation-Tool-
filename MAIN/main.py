@@ -107,7 +107,8 @@ class MyWindow(QMainWindow):
         toolPath = self.ui.tool_path_input
         toolOutputDataSpec = self.ui.output_data_input
         optionArg = self.ui.option_arg_input
-
+        xmlFile = self.ui.lineEdit_5.setText
+        
         doc.setHtml(toolName.text())
         toolName = doc.toPlainText()
 
@@ -123,7 +124,11 @@ class MyWindow(QMainWindow):
         doc.setHtml(optionArg.text())
         optionArg = doc.toPlainText()
 
-        if toolName == "":
+        if xmlFile:
+            self.clearInputBoxes()
+            self.ui.stackedWidget.setCurrentWidget(self.ui.tool)
+        
+        elif toolName == "":
             self.ui.Announcer.setStyleSheet("color: red")
             self.ui.Announcer.setText("Missing Tool Name")
 
@@ -157,6 +162,7 @@ class MyWindow(QMainWindow):
         self.ui.tool_path_input.setText("")
         self.ui.output_data_input.setText("")
         self.ui.option_arg_input.setText("")
+        self.ui.lineEdit_5.setText("")
 
     ### METHOD TO POPULATE TOOL LIST TABLE FROM DATABASE ###
     def populateTable(self):
