@@ -7,25 +7,48 @@ class databaseHandler():
 #Initialize connection
     def __init__(self):
         self.cluster = pymongo.MongoClient("mongodb+srv://Admin:12345@cluster0.4cco1.mongodb.net/test?authSource=admin&replicaSet=atlas-2cze3m-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true")
-    
-    def build(self): 
+
+    def build(self):
         databases = self.cluster.list_database_names()
 
         db = "SEA_TOOl"
 
         if db not in databases:
-            self.database = self.cluster["SEA_TOOl"]   
+            self.database = self.cluster["SEA_TOOl"]
             tool = self.database["Tool"]
-        
+            run = self.database["Run"]
+            scan = self.database["Scan"]
+
+            Scan_Specs = {
+                'name': "",
+                'scanName': "",
+                'belongsTo': "",
+                'executionNumber': "",
+                'startTime': "",
+                'endTime': "",
+                'status': "",
+            }
+
+            Run_Specs = {
+                'name': "",
+                'description': "",
+                'whitelist': "",
+                'blacklist': "",
+                'scantypes': "",
+                'timeStamp': "",
+            }
+
             Tool_Specs = {
                 'name': "",
                 'description': "",
-                'path': "", 
+                'path': "",
                 'outputDataSpec': "",
                 'optionAndArgument': ""
             }
-            
+
             tool.insert_one(Tool_Specs)
+            run.insert_one(Run_Specs)
+            scan.insert_one(Scan_Specs)
 
             print("*************************DATABASE CREATED**********************")
 
@@ -33,9 +56,24 @@ class databaseHandler():
             self.database = self.cluster[db]
             print("************************DATABASE ALREADY CREATED*****************")
 
+    def insertIntoRun(self, name, description, whitelist, blacklist, scantypes, timeStamp):
+        run = self.database["Run"]
+
+        Run_Specs = {
+            'name': name,
+            'description': description,
+            'whitelist': whitelist,
+            'blacklist': blacklist,
+            'scantypes': scantypes,
+            'timeStamp': timeStamp
+        }
+        tool.insert_one(Run_Specs)
+
+        print ("********** INSERTED INTO TABLE*****************")
+
     def insertIntoTool(self, name, description, path, outputDataSpecification, optionAndArg):
         tool = self.database["Tool"]
-        
+
         Tool_Specs = {
             'name': name,
             'description': description,
@@ -45,13 +83,13 @@ class databaseHandler():
         }
         tool.insert_one(Tool_Specs)
         print ("********** INSERTED INTO TABLE*****************")
-    
+
     def deleteFromTool(self,name):
         tool = self.database["Tool"]
         some_query = {"name" : name}
-        
+
         result = tool.delete_one( some_query )
-        print ("result:", type(result), "-- deleted count:", result.deleted_count)    
+        print ("result:", type(result), "-- deleted count:", result.deleted_count)
 
     def updateAtTool(self, name, name2, description, path, outputDataSpecification, optionAndARg):
         print(name, name2)
@@ -61,7 +99,7 @@ class databaseHandler():
                                 "description": description,
                                 "path": path,
                                 "outputDataSpec": outputDataSpecification,
-                                "ouptionAndArgument": optionAndARg} 
+                                "ouptionAndArgument": optionAndARg}
                     }
         result = tool.update_one(query, newvalues)
         print ("acknowledged:", result.acknowledged)
@@ -71,4 +109,3 @@ class databaseHandler():
         tool = self.database["Tool"]
         data = pd.DataFrame(list(tool.find()))
         return data
-        
