@@ -75,8 +75,8 @@ class MyWindow(QMainWindow):
         # SHOW SCAN OPTIONS
         self.getScanOptions()
 
-        # GIVE PATH OF TOOL
-        self.getPathOfScan()
+        # # GIVE PATH OF TOOL
+        # self.getPathOfScan()
 
         # SHOW RUN OPTIONS TO REMOVE
         self.getRunOptions()
