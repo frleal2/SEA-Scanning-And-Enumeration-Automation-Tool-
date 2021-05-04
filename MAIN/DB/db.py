@@ -56,6 +56,7 @@ class databaseHandler():
             self.database = self.cluster[db]
             print("************************DATABASE ALREADY CREATED*****************")
 
+
     def insertIntoRun(self, name, description, whitelist, blacklist, scantypes, timeStamp):
         run = self.database["Run"]
 
@@ -67,7 +68,7 @@ class databaseHandler():
             'scantypes': scantypes,
             'timeStamp': timeStamp
         }
-        tool.insert_one(Run_Specs)
+        run.insert_one(Run_Specs)
 
         print ("********** INSERTED INTO TABLE*****************")
 
@@ -108,4 +109,9 @@ class databaseHandler():
     def importData(self):
         tool = self.database["Tool"]
         data = pd.DataFrame(list(tool.find()))
+        return data
+
+    def importRunData(self):
+        run = self.database["Run"]
+        data = pd.DataFrame(list(run.find()))
         return data
