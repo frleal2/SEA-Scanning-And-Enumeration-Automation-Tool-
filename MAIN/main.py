@@ -16,7 +16,8 @@ db = databaseHandler()
 db.build()
 
 file_path = ""
-string_of_args = "" # THIS WILL BE USED TO GET THE FULL STRING OF ARGS
+string_of_args = ""  # THIS WILL BE USED TO GET THE FULL STRING OF ARGS
+finalString = ""
 
 class MyWindow(QMainWindow):
     def __init__(self):
@@ -25,7 +26,7 @@ class MyWindow(QMainWindow):
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
 
-        #DEFAULT PAGE
+        # DEFAULT PAGE
         self.ui.stackedWidget.setCurrentWidget(self.ui.tool)
 
         # TOOL PAGE
@@ -34,36 +35,41 @@ class MyWindow(QMainWindow):
         # RUN PAGE
         self.ui.btn_run_2.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.run))
 
-            # DETAILED VIEW BUTTON TAKES YOU TO THE DETAILED VIEW PAGE
+        # DETAILED VIEW BUTTON TAKES YOU TO THE DETAILED VIEW PAGE
         self.ui.detailed_view_btn.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.detailed_view))
 
         # ADD TOOL PAGE
         self.ui.btn_add_tool.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool_specification))
 
-            # PRESSED CANCEL BUTTON ON ADD TOOL PAGE GOES BACK TO TOOL PAGE
+        # PRESSED CANCEL BUTTON ON ADD TOOL PAGE GOES BACK TO TOOL PAGE
         self.ui.cancel_tool.clicked.connect(self.clearInputBoxes)
         self.ui.cancel_tool.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool))
 
-            #SAVE TOOL INPUT INTO TOOL TABLE AT DATABASE
+        # SAVE TOOL INPUT INTO TOOL TABLE AT DATABASE
         self.ui.save_tool_button.clicked.connect(self.saveToolInput)
         self.ui.save_tool_button.clicked.connect(self.populateTable)
 
         # This is what I am working on - SEAN
         self.ui.browse_path_button_2.clicked.connect(self.stringOfArgs)
 
+        # THIS IS FOR THE ADD BUTTON FOR THE TOOL THAT WAS SELECTED IN THE
+        self.ui.pushButton.clicked.connect(self.stringOfScans)
 
-        #POPULATE TABLE
+        # POPULATE TABLE
         self.populateTable()
 
-        #BROWSE BUTTONS
+        # SHOW SCAN OPTIONS
+        self.getScanOptions()
+
+        # BROWSE BUTTONS
         self.ui.browse_path_button_3.clicked.connect(self.open)
         self.ui.browse_path_button.clicked.connect(self.open1)
         self.ui.browse_path_button_4.clicked.connect(self.open2)
         self.ui.browse_path_button_6.clicked.connect(self.open3)
 
         # BROWSE BUTTONS OF CONFIGURATION FILE
-        #THIS IS WRONG!! FIX
-        #self.ui.add_configuration_file_run.clicked.connect(self.open2)
+        # THIS IS WRONG!! FIX
+        # self.ui.add_configuration_file_run.clicked.connect(self.open2)
 
         ## SHOW ==> MAIN WINDOW
         ########################################################################
@@ -157,40 +163,41 @@ class MyWindow(QMainWindow):
         items = len(name_column)
 
         for x in range(items):
-            remove_btn = QPushButton("Remove")         #CREATES A REMOVE BUTTON
-            remove_btn.clicked.connect(lambda *args, row=x: self.confirmation_dialog(row)) #GIVES THE ROW OF THE BUTTON
-            remove_btn.setStyleSheet("QPushButton {\n" #STYLES THE BUTTON
-                                        "    color: black;\n"
-                                        "    background-color: rgb(235,235,235);\n"
-                                        "    border: 0px solid;\n"
-                                        "}\n"
-                                        "QPushButton:hover {\n"
-                                        "    background-color: rgb(85, 170, 255);\n"
-                                        "}")
+            remove_btn = QPushButton("Remove")  # CREATES A REMOVE BUTTON
+            remove_btn.clicked.connect(
+                lambda *args, row=x: self.confirmation_dialog(row))  # GIVES THE ROW OF THE BUTTON
+            remove_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
 
-            update_btn = QPushButton("Update/Edit")         #CREATES AN UPDATE BUTTON
+            update_btn = QPushButton("Update/Edit")  # CREATES AN UPDATE BUTTON
             update_btn.clicked.connect(lambda *args, row=x: self.onClickedUpdate(row))
-            update_btn.setStyleSheet("QPushButton {\n" #STYLES THE BUTTON
-                                        "    color: black;\n"
-                                        "    background-color: rgb(235,235,235);\n"
-                                        "    border: 0px solid;\n"
-                                        "}\n"
-                                        "QPushButton:hover {\n"
-                                        "    background-color: rgb(85, 170, 255);\n"
-                                        "}")
+            update_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
             self.ui.tool_list_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
             self.ui.tool_list_table.setItem(x, 1, QTableWidgetItem(description_column[x]))
-            self.ui.tool_list_table.setCellWidget(x, 2, remove_btn) #ADDS A REMOVE BUTTON IN EVERY ROW OF THE COLUMN
-            self.ui.tool_list_table.setCellWidget(x, 3, update_btn) #ADDS AN UPDATE BUTTON IN EVERY ROW OF THE COLUMN
+            self.ui.tool_list_table.setCellWidget(x, 2, remove_btn)  # ADDS A REMOVE BUTTON IN EVERY ROW OF THE COLUMN
+            self.ui.tool_list_table.setCellWidget(x, 3, update_btn)  # ADDS AN UPDATE BUTTON IN EVERY ROW OF THE COLUMN
 
     ### METHOD FOR UPDATE BUTTON IN TOOL LIST TABLE
-    def onClickedUpdate(self,row):
-        name = self.ui.tool_list_table.item(row,0).text()
+    def onClickedUpdate(self, row):
+        name = self.ui.tool_list_table.item(row, 0).text()
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.tool_update)
 
         tooldata = db.importData()
-        #print(tooldata)
+        # print(tooldata)
         name_column = list(tooldata['name'])
         description_column = list(tooldata['description'])
         path_column = list(tooldata['path'])
@@ -212,30 +219,30 @@ class MyWindow(QMainWindow):
         self.ui.option_arg_input_3.setText(optionAndArgument_column[row])
         self.ui.option_arg_input_3.textChanged.connect(self.onChanged5)
 
-        #THIS BUTTON UPDATES THE ALREADY SAVED TOOL
+        # THIS BUTTON UPDATES THE ALREADY SAVED TOOL
         self.ui.save_tool_button_2.clicked.connect(lambda *args, name=name: self.updateTool(name))
 
-        #THIS BUTTON CANCELS THE UPDATING FORM
+        # THIS BUTTON CANCELS THE UPDATING FORM
         self.ui.cancel_tool_2.clicked.connect(lambda: self.ui.stackedWidget.setCurrentWidget(self.ui.tool))
 
-    def onChanged1(self,text):
+    def onChanged1(self, text):
         self.ui.tool_name_input_2.setText(text)
         print(text)
 
-    def onChanged2(self,text):
+    def onChanged2(self, text):
         self.ui.tool_description_input_2.setText(text)
 
-    def onChanged3(self,text):
+    def onChanged3(self, text):
         self.ui.tool_path_input_2.setText(text)
 
-    def onChanged4(self,text):
+    def onChanged4(self, text):
         self.ui.output_data_input_2.setText(text)
 
-    def onChanged5(self,text):
+    def onChanged5(self, text):
         self.ui.option_arg_input_3.setText(text)
 
     ###METHOD TO GET UPDATED STRINGS FROM UPDATE OF TOOL
-    def updateTool(self,name):
+    def updateTool(self, name):
         toolName = self.ui.tool_name_input_2.text()
         toolDesc = self.ui.tool_description_input_2.text()
         toolPath = self.ui.tool_path_input_2.text()
@@ -243,16 +250,16 @@ class MyWindow(QMainWindow):
         optionArg = self.ui.option_arg_input_3.text()
 
         print(toolName, toolDesc, toolPath, toolOutputDataSpec, optionArg)
-        db.updateAtTool(name,toolName,toolDesc,toolPath,toolOutputDataSpec,optionArg)
+        db.updateAtTool(name, toolName, toolDesc, toolPath, toolOutputDataSpec, optionArg)
         self.populateTable()
         self.ui.stackedWidget.setCurrentWidget(self.ui.tool)
 
     ### METHOD FOR REMOVE BUTTON IN TOOL LIST TABLE
-    def onClickedRemove(self,row):
-        name = self.ui.tool_list_table.item(row,0).text() #GETTING THE NAME OF THE TOOL
+    def onClickedRemove(self, row):
+        name = self.ui.tool_list_table.item(row, 0).text()  # GETTING THE NAME OF THE TOOL
         print(name)
-        db.deleteFromTool(name)                           #DELETING DOCUMENT FROM CLUSTER
-        self.ui.tool_list_table.removeRow(row)            #DELETING ROW FROM TABLE
+        db.deleteFromTool(name)  # DELETING DOCUMENT FROM CLUSTER
+        self.ui.tool_list_table.removeRow(row)  # DELETING ROW FROM TABLE
 
     ### METHODS FOR THE BROWSE BUTTONS ###
     def open(self):
@@ -267,7 +274,7 @@ class MyWindow(QMainWindow):
     ### BROWSE BUTTON FOR THE TOOL PATH ###
     def open1(self):
         path = QFileDialog.getOpenFileName()
-        print("File path:"+path[0])
+        print("File path:" + path[0])
         self.ui.tool_path_input.setText(path[0])
         # file = path[0]
         #
@@ -277,19 +284,19 @@ class MyWindow(QMainWindow):
     def open2(self):
         path = QFileDialog.getOpenFileName()
         self.ui.tool_path_input_2.setText(path[0])
-        #print("File path:" + path[0])
-        #file = path[0]
+        # print("File path:" + path[0])
+        # file = path[0]
 
-        #with open(file, "r") as f:
-            #print(f.readline())
+        # with open(file, "r") as f:
+        # print(f.readline())
 
     def open3(self):
         path = QFileDialog.getOpenFileName()
         print("File path:" + path[0])
         self.ui.lineEdit_6.setText(path[0])
-        #file = path[0]
-        #with open(file, "r") as f:
-            #print(f.readline())
+        # file = path[0]
+        # with open(file, "r") as f:
+        # print(f.readline())
 
     ### METHOD FOR ADDINGING THE PATH OF CONFIGURATION FILE ###
     def open4(self):
@@ -300,6 +307,33 @@ class MyWindow(QMainWindow):
 
         with open(file, "r") as f:
             print(f.readline())
+
+    ### GETTING THE LIST OF TOOL NAMES WE ARE USING
+    def getScanOptions(self):
+        tooldata = db.importData()
+        name_column = list(tooldata['name'])
+        items = len(name_column)
+        for x in range(items):
+            self.ui.scan_type_drop_down.addItem(name_column[x])
+
+    ### GETTING THE PATH OF THE TOOL FOR THE CMD TO BE USED FOR THE SCAN PROCESS
+    def getPathOfScan(self, nameOfTool):
+        tooldata = db.importData()
+        name_column = list(tooldata['name'])
+        items = len(name_column)
+        path_column = list(tooldata['path'])
+        for x in range(items):
+            if name_column[x] == nameOfTool:
+                return path_column[x]
+
+    ### METHOD FOR ADDING THE STRING OF CANS TO DISPLAY WITHIN THE  ###
+
+    def stringOfScans(self):
+        scanName = self.ui.scan_type_drop_down.currentText()
+        global finalString
+        finalString = finalString + " " + scanName
+        print(finalString)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
