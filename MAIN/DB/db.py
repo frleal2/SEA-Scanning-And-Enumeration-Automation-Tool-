@@ -21,11 +21,11 @@ class databaseHandler():
 
             Scan_Specs = {
                 'name': "",
-                'scanName': "",
-                'belongsTo': "",
+                #'belongsTo': "",
                 'executionNumber': "",
                 'startTime': "",
                 'endTime': "",
+                'scannedIPs': "",
                 'status': "",
             }
 
@@ -72,6 +72,24 @@ class databaseHandler():
 
         print ("********** INSERTED INTO TABLE*****************")
 
+
+    def insertIntoScan(self, name, executionNumber, startTime, endTime, scannedIPs, status):
+        tool = self.database["Scan"]
+
+        Scan_Specs = {
+            'name': name,
+            #'belongsTo': belongsTo,
+            'executionNumber': executionNumber,
+            'startTime': startTime,
+            'endTime': endTime,
+            'scannedIPs': scannedIPs,
+            'status': status,
+        }
+        tool.insert_one(Scan_Specs)
+
+        print("** INSERTED INTO TABLE*")
+
+
     def insertIntoTool(self, name, description, path, outputDataSpecification, optionAndArg):
         tool = self.database["Tool"]
 
@@ -114,4 +132,9 @@ class databaseHandler():
     def importRunData(self):
         run = self.database["Run"]
         data = pd.DataFrame(list(run.find()))
+        return data
+
+    def importScanData(self):
+        scan = self.database["Scan"]
+        data = pd.DataFrame(list(scan.find()))
         return data

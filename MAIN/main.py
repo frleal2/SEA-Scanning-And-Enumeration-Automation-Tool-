@@ -68,9 +68,18 @@ class MyWindow(QMainWindow):
         self.populateRunTable()
         #NO EDITING RUN TABLE
         self.ui.run_list_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        #self.populateScanTable()
+        # NO EDITING SCAN TABLE
+        self.ui.statistical_data_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
         # SHOW SCAN OPTIONS
         self.getScanOptions()
+
+        # GIVE PATH OF TOOL
+        self.getPathOfScan()
+
+        # SHOW RUN OPTIONS TO REMOVE
+        self.getRunOptions()
 
         # BROWSE BUTTONS
         self.ui.browse_path_button_3.clicked.connect(self.open)
@@ -93,7 +102,6 @@ class MyWindow(QMainWindow):
         self.ui.blacklist_box.setText("")
 
     def saveRunConfiguration(self):
-
         runName = self.ui.run_name_box.text()
         runDesc = self.ui.run_desc_box.text()
         whiteList = self.ui.whitelist_box.text()
@@ -181,6 +189,59 @@ class MyWindow(QMainWindow):
         self.ui.tool_path_input.setText("")
         self.ui.output_data_input.setText("")
         self.ui.option_arg_input.setText("")
+
+
+    ### METHOD TO POPULATE SCAN TABLE FROM DATABASE
+    def populateScanTable(self):
+        scandata = db.importScanData()
+        name_column = list(scandata['name'])
+        execution_column = list(scandata['executionNumber'])
+        startTime_column = list(scandata['startTime'])
+        endTime_column = list(scandata['endTime'])
+        scanned_IPs_column = list(scandata['scannedIPs'])
+        status_column = list(scandata['status'])
+        items = len(name_column)
+
+        for x in range(items):
+            play_btn = QPushButton("Play")
+            play_btn.clicked.connect(
+                lambda *args, row=x: self.startRun(row))
+            play_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            pause_btn = QPushButton("Pause")
+            pause_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            stop_btn = QPushButton("Stop")
+            stop_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            self.ui.statistical_data_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
+            self.ui.statistical_data_table.setItem(x, 1, QTableWidgetItem(execution_column[x]))
+            self.ui.statistical_data_table.setItem(x, 2, QTableWidgetItem(startTime_column[x]))
+            self.ui.statistical_data_table.setItem(x, 3, QTableWidgetItem(endTime_column[x]))
+            self.ui.statistical_data_table.setItem(x, 4, QTableWidgetItem(scanned_IPs_column[x]))
+            self.ui.statistical_data_table.setItem(x, 5, QTableWidgetItem(status_column[x]))
+            self.ui.statistical_data_table.setCellWidget(x, 6, play_btn)
+            self.ui.statistical_data_table.setCellWidget(x, 7, pause_btn)
+            self.ui.statistical_data_table.setCellWidget(x, 8, stop_btn)
+
 
     ### METHOD TO POPULATE RUN TABLE FROM DATABASE
     def populateRunTable(self):
@@ -393,14 +454,20 @@ class MyWindow(QMainWindow):
             self.ui.scan_type_drop_down.addItem(name_column[x])
 
     ### GETTING THE PATH OF THE TOOL FOR THE CMD TO BE USED FOR THE SCAN PROCESS
-    def getPathOfScan(self, nameOfTool):
+    def getPathOfScan(self, toolUsed):
         tooldata = db.importData()
+        rundata = db.importRunData()
         name_column = list(tooldata['name'])
-        items = len(name_column)
+        scan_types_column = list(rundata['scantypes'])
         path_column = list(tooldata['path'])
+
+        items = len(name_column)
         for x in range(items):
-            if name_column[x] == nameOfTool:
-                return path_column[x]
+            if name_column[x] == toolUsed:
+                if name_column[x] == scan_types_column[x]:
+                    print(path_column[x])
+                else:
+                    break
 
     ### METHOD FOR ADDING THE STRING OF CANS TO DISPLAY WITHIN THE  ###
 
@@ -410,6 +477,21 @@ class MyWindow(QMainWindow):
         finalString = finalString + " " + scanName
         print(finalString)
 
+        ### GETTING THE LIST OF TOOL NAMES WE ARE USING
+
+    def getRunOptions(self):
+        rundata = db.importRunData()
+        name_column = list(rundata['name'])
+        items = len(name_column)
+        for x in range(items):
+            self.ui.scan_type_drop_down_3.addItem(name_column[x])
+
+    def getRunOptions(self):
+        rundata = db.importRunData()
+        name_column = list(rundata['name'])
+        items = len(name_column)
+        for x in range(items):
+            self.ui.scan_type_drop_down_3.addItem(name_column[x])
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
