@@ -55,8 +55,19 @@ class MyWindow(QMainWindow):
         # THIS IS FOR THE ADD BUTTON FOR THE TOOL THAT WAS SELECTED IN THE
         self.ui.pushButton.clicked.connect(self.stringOfScans)
 
-        # POPULATE TABLE
+        #THIS BUTTON SAVES THE RUN CONFIGURATION
+        self.ui.save_config_selected_run.clicked.connect(self.saveRunConfiguration)
+        self.ui.save_config_selected_run.clicked.connect(self.populateRunTable)
+        self.ui.save_config_selected_run.clicked.connect(self.cleanRunConfiguration)
+
+
+        # POPULATE TOOL LIST TABLE AND RUN LIST TABLE RESPECTIVELY
         self.populateTable()
+        #NO EDITING TOOL TABLE
+        self.ui.tool_list_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+        self.populateRunTable()
+        #NO EDITING RUN TABLE
+        self.ui.run_list_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
         # SHOW SCAN OPTIONS
         self.getScanOptions()
@@ -75,6 +86,22 @@ class MyWindow(QMainWindow):
         ########################################################################
         self.show()
         ## ==> END ##
+    def cleanRunConfiguration(self):
+        self.ui.run_name_box.setText("")
+        self.ui.run_desc_box.setText("")
+        self.ui.whitelist_box.setText("")
+        self.ui.blacklist_box.setText("")
+
+    def saveRunConfiguration(self):
+
+        runName = self.ui.run_name_box.text()
+        runDesc = self.ui.run_desc_box.text()
+        whiteList = self.ui.whitelist_box.text()
+        blackList = self.ui.blacklist_box.text()
+        scans = finalString
+        timeStamp = ""
+        db.insertIntoRun(runName, runDesc, whiteList, blackList, scans, timeStamp)
+
 
     def confirmation_dialog(self, row):
         Dialog = QtWidgets.QDialog()
@@ -154,6 +181,55 @@ class MyWindow(QMainWindow):
         self.ui.tool_path_input.setText("")
         self.ui.output_data_input.setText("")
         self.ui.option_arg_input.setText("")
+
+    ### METHOD TO POPULATE RUN TABLE FROM DATABASE
+    def populateRunTable(self):
+        rundata = db.importRunData()
+        name_column = list(rundata['name'])
+        description_column = list(rundata['description'])
+        timestamp_column = list(rundata['timeStamp'])
+        items = len(name_column)
+
+        for x in range(items):
+            play_btn = QPushButton("Play")
+            play_btn.clicked.connect(
+                lambda *args, row=x: self.startRun(row))
+            play_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            pause_btn = QPushButton("Pause")
+            pause_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            stop_btn = QPushButton("Stop")
+            stop_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            self.ui.run_list_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
+            self.ui.run_list_table.setItem(x, 1, QTableWidgetItem(description_column[x]))
+            self.ui.run_list_table.setItem(x, 2, QTableWidgetItem(timestamp_column[x]))
+            self.ui.run_list_table.setCellWidget(x, 3, play_btn)
+            self.ui.run_list_table.setCellWidget(x, 4, pause_btn)
+            self.ui.run_list_table.setCellWidget(x, 5, stop_btn)
+
+    ### METHOD TO START THE RUN
+    def startRun(self, row):
+        return row 
 
     ### METHOD TO POPULATE TOOL LIST TABLE FROM DATABASE ###
     def populateTable(self):
