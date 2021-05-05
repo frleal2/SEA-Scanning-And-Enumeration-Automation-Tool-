@@ -72,7 +72,6 @@ class MyWindow(QMainWindow):
         #NO EDITING RUN TABLE
         self.ui.run_list_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
-        self.populateScanTable()
         # NO EDITING SCAN TABLE
         self.ui.statistical_data_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
@@ -80,7 +79,7 @@ class MyWindow(QMainWindow):
         self.getScanOptions()
 
         # # GIVE PATH OF TOOL
-        self.getPathOfScan()
+        #self.getPathOfScan()
 
         # SHOW RUN OPTIONS TO REMOVE
         self.getRunOptions()
