@@ -469,6 +469,8 @@ class MyWindow(QMainWindow):
                 else:
                     break
 
+
+
     ### METHOD FOR ADDING THE STRING OF CANS TO DISPLAY WITHIN THE  ###
 
     def stringOfScans(self):
@@ -486,7 +488,7 @@ class MyWindow(QMainWindow):
         for x in range(items):
             self.ui.scan_type_drop_down_3.addItem(name_column[x])
 
-    def getRunOptions(self):
+    def getScanOptions(self):
         rundata = db.importRunData()
         name_column = list(rundata['name'])
         items = len(name_column)
