@@ -57,18 +57,22 @@ class MyWindow(QMainWindow):
 
         #THIS BUTTON SAVES THE RUN CONFIGURATION
         self.ui.save_config_selected_run.clicked.connect(self.saveRunConfiguration)
+        self.ui.save_config_selected_run.clicked.connect(self.populateScans)
         self.ui.save_config_selected_run.clicked.connect(self.populateRunTable)
         self.ui.save_config_selected_run.clicked.connect(self.cleanRunConfiguration)
 
 
-        # POPULATE TOOL LIST TABLE AND RUN LIST TABLE RESPECTIVELY
+        # POPULATE TOOL LIST TABLE, RUN LIST TABLE AND SCAN LIST TABLE RESPECTIVELY
         self.populateTable()
         #NO EDITING TOOL TABLE
         self.ui.tool_list_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
+
+
         self.populateRunTable()
         #NO EDITING RUN TABLE
         self.ui.run_list_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-        #self.populateScanTable()
+
+        self.populateScanTable()
         # NO EDITING SCAN TABLE
         self.ui.statistical_data_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
 
@@ -76,7 +80,7 @@ class MyWindow(QMainWindow):
         self.getScanOptions()
 
         # # GIVE PATH OF TOOL
-        # self.getPathOfScan()
+        self.getPathOfScan()
 
         # SHOW RUN OPTIONS TO REMOVE
         self.getRunOptions()
@@ -91,10 +95,41 @@ class MyWindow(QMainWindow):
         # THIS IS WRONG!! FIX
         # self.ui.add_configuration_file_run.clicked.connect(self.open2)
 
+        self.ui.detailed_view_btn.clicked.connect(self.populateSelectedRun)
+
         ## SHOW ==> MAIN WINDOW
         ########################################################################
         self.show()
-        ## ==> END ##
+        ## ==> END #
+
+    def populateSelectedRun(self):
+        indexes = self.ui.run_list_table.selectedIndexes()
+        row = 0
+        for index in sorted(indexes):
+            row = index.row()
+        #print(row)
+
+        rundata = db.importRunData()
+        name_column = list(rundata['name'])
+        name = name_column[row]
+        #print(name)
+        self.populateScanTable(name)
+
+    def populateScans(self):
+        runName = self.ui.run_name_box.text()
+        scans = finalString
+        l = scans.split()
+
+        executionNumber = ""
+        startTime = ""
+        endTime = ""
+        scannedIPs = ""
+        status = ""
+
+        for x in l:
+            db.insertIntoScan(x, runName, executionNumber, startTime, endTime, scannedIPs, status)
+
+
     def cleanRunConfiguration(self):
         self.ui.run_name_box.setText("")
         self.ui.run_desc_box.setText("")
@@ -192,16 +227,17 @@ class MyWindow(QMainWindow):
 
 
     ### METHOD TO POPULATE SCAN TABLE FROM DATABASE
-    def populateScanTable(self):
-        scandata = db.importScanData()
+    def populateScanTable(self, name):
+        scandata = db.importOnlyMatchingScans(name)
         name_column = list(scandata['name'])
+        belongsTo_column = list(scandata['belongsTo'])
         execution_column = list(scandata['executionNumber'])
         startTime_column = list(scandata['startTime'])
         endTime_column = list(scandata['endTime'])
         scanned_IPs_column = list(scandata['scannedIPs'])
         status_column = list(scandata['status'])
-        items = len(name_column)
 
+        items = len(name_column)
         for x in range(items):
             play_btn = QPushButton("Play")
             play_btn.clicked.connect(
@@ -290,7 +326,7 @@ class MyWindow(QMainWindow):
 
     ### METHOD TO START THE RUN
     def startRun(self, row):
-        return row 
+        return row
 
     ### METHOD TO POPULATE TOOL LIST TABLE FROM DATABASE ###
     def populateTable(self):
@@ -482,13 +518,6 @@ class MyWindow(QMainWindow):
         ### GETTING THE LIST OF TOOL NAMES WE ARE USING
 
     def getRunOptions(self):
-        rundata = db.importRunData()
-        name_column = list(rundata['name'])
-        items = len(name_column)
-        for x in range(items):
-            self.ui.scan_type_drop_down_3.addItem(name_column[x])
-
-    def getScanOptions(self):
         rundata = db.importRunData()
         name_column = list(rundata['name'])
         items = len(name_column)

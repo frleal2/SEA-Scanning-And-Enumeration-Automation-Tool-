@@ -21,7 +21,7 @@ class databaseHandler():
 
             Scan_Specs = {
                 'name': "",
-                #'belongsTo': "",
+                'belongsTo': "",
                 'executionNumber': "",
                 'startTime': "",
                 'endTime': "",
@@ -73,19 +73,19 @@ class databaseHandler():
         print ("********** INSERTED INTO TABLE*****************")
 
 
-    def insertIntoScan(self, name, executionNumber, startTime, endTime, scannedIPs, status):
-        tool = self.database["Scan"]
+    def insertIntoScan(self, name, belongsTo, executionNumber, startTime, endTime, scannedIPs, status):
+        scan = self.database["Scan"]
 
         Scan_Specs = {
             'name': name,
-            #'belongsTo': belongsTo,
+            'belongsTo': belongsTo,
             'executionNumber': executionNumber,
             'startTime': startTime,
             'endTime': endTime,
             'scannedIPs': scannedIPs,
             'status': status,
         }
-        tool.insert_one(Scan_Specs)
+        scan.insert_one(Scan_Specs)
 
         print("** INSERTED INTO TABLE*")
 
@@ -137,4 +137,9 @@ class databaseHandler():
     def importScanData(self):
         scan = self.database["Scan"]
         data = pd.DataFrame(list(scan.find()))
+        return data
+
+    def importOnlyMatchingScans(self, name):
+        scan = self.database["Scan"]
+        data = pd.DataFrame(list(scan.find({"belongsTo": name})))
         return data
