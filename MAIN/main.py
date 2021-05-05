@@ -11,7 +11,9 @@ import sys
 # GUI FILE
 from SEA_main_page import Ui_MainWindow
 from Confirmation_Dialog import Ui_Dialog
+from tooltest import toolHandler
 
+tt = toolHandler()
 db = databaseHandler()
 db.build()
 
@@ -61,12 +63,10 @@ class MyWindow(QMainWindow):
         self.ui.save_config_selected_run.clicked.connect(self.populateRunTable)
         self.ui.save_config_selected_run.clicked.connect(self.cleanRunConfiguration)
 
-
         # POPULATE TOOL LIST TABLE, RUN LIST TABLE AND SCAN LIST TABLE RESPECTIVELY
         self.populateTable()
         #NO EDITING TOOL TABLE
         self.ui.tool_list_table.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
-
 
         self.populateRunTable()
         #NO EDITING RUN TABLE
@@ -78,9 +78,6 @@ class MyWindow(QMainWindow):
         # SHOW SCAN OPTIONS
         self.getScanOptions()
 
-        # # GIVE PATH OF TOOL
-        #self.getPathOfScan()
-
         # SHOW RUN OPTIONS TO REMOVE
         self.getRunOptions()
 
@@ -90,10 +87,7 @@ class MyWindow(QMainWindow):
         self.ui.browse_path_button_4.clicked.connect(self.open2)
         self.ui.browse_path_button_6.clicked.connect(self.open3)
 
-        # BROWSE BUTTONS OF CONFIGURATION FILE
-        # THIS IS WRONG!! FIX
-        # self.ui.add_configuration_file_run.clicked.connect(self.open2)
-
+        #POPULATE SELECTED RUN TABLE
         self.ui.detailed_view_btn.clicked.connect(self.populateSelectedRun)
 
         ## SHOW ==> MAIN WINDOW
@@ -240,7 +234,7 @@ class MyWindow(QMainWindow):
         for x in range(items):
             play_btn = QPushButton("Play")
             play_btn.clicked.connect(
-                lambda *args, row=x: self.startRun(row))
+                lambda *args, toolname= name_column[x], runname= name: self.startScan(toolname, runname))
             play_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
                                      "    color: black;\n"
                                      "    background-color: rgb(235,235,235);\n"
@@ -326,6 +320,42 @@ class MyWindow(QMainWindow):
     ### METHOD TO START THE RUN
     def startRun(self, row):
         return row
+
+    ### METHOD TO START THE SCAN
+    def startScan(self, toolName, runName):
+
+        path = ""
+        args = ""
+        whiteList = ""
+
+        tooldata = db.importData()
+        rundata = db.importRunData()
+        #print(tooldata)
+        name_column = list(tooldata['name'])
+        args_column = list(tooldata['ouptionAndArgument'])
+        path_column = list(tooldata['path'])
+
+        runName_column = list(rundata['name'])
+
+        scandata = db.importScanData()
+
+        whiteList_column = list(rundata['whitelist'])
+
+
+        items = len(name_column)
+
+        for x in range(items):
+            if toolName == name_column[x]:
+                path = path_column[x]
+                args = args_column[x]
+
+        runItems = len(runName_column)
+        for x in range(runItems):
+            if runName == runName_column[x]:
+                whiteList = whiteList_column[x]
+        print(path + args + whiteList)
+
+        tt.executeScan(path,args,whiteList)
 
     ### METHOD TO POPULATE TOOL LIST TABLE FROM DATABASE ###
     def populateTable(self):
@@ -489,20 +519,7 @@ class MyWindow(QMainWindow):
             self.ui.scan_type_drop_down.addItem(name_column[x])
 
     ### GETTING THE PATH OF THE TOOL FOR THE CMD TO BE USED FOR THE SCAN PROCESS
-    def getPathOfScan(self, toolUsed):
-        tooldata = db.importData()
-        rundata = db.importRunData()
-        name_column = list(tooldata['name'])
-        scan_types_column = list(rundata['scantypes'])
-        path_column = list(tooldata['path'])
 
-        items = len(name_column)
-        for x in range(items):
-            if name_column[x] == toolUsed:
-                if name_column[x] == scan_types_column[x]:
-                    print(path_column[x])
-                else:
-                    break
 
 
 
@@ -522,6 +539,7 @@ class MyWindow(QMainWindow):
         items = len(name_column)
         for x in range(items):
             self.ui.scan_type_drop_down_3.addItem(name_column[x])
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
