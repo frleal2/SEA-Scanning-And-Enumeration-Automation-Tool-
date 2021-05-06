@@ -1962,7 +1962,7 @@ border-color: rgb(94, 94, 94);
 color: black;</string>
                                </property>
                                <property name="text">
-                                <string>c:/Home/Desktop...</string>
+                                <string></string>
                                </property>
                               </widget>
                              </item>

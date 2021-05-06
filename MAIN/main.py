@@ -4,6 +4,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from DB.db import databaseHandler
 from PyQt5 import QtWidgets
+import xml.etree.ElementTree as ET
 import pymongo
 import pandas as pd
 import xml.etree.ElementTree as ET
@@ -107,8 +108,9 @@ class MyWindow(QMainWindow):
         toolPath = self.ui.tool_path_input
         toolOutputDataSpec = self.ui.output_data_input
         optionArg = self.ui.option_arg_input
-        xmlFile = self.ui.lineEdit_5.setText
+        xmlFile = self.ui.lineEdit_5
         
+
         doc.setHtml(toolName.text())
         toolName = doc.toPlainText()
 
@@ -123,8 +125,13 @@ class MyWindow(QMainWindow):
 
         doc.setHtml(optionArg.text())
         optionArg = doc.toPlainText()
+        
+        doc.setHtml(xmlFile.text())
+        xmlFile = doc.toPlainText()
+        
+        
 
-        if xmlFile:
+        if xmlFile !=  "": #If xml file able to click save
             self.clearInputBoxes()
             self.ui.stackedWidget.setCurrentWidget(self.ui.tool)
         
@@ -163,6 +170,145 @@ class MyWindow(QMainWindow):
         self.ui.output_data_input.setText("")
         self.ui.option_arg_input.setText("")
         self.ui.lineEdit_5.setText("")
+
+
+    ### METHOD TO POPULATE SCAN TABLE FROM DATABASE
+    def populateScanTable(self, name):
+        scandata = db.importOnlyMatchingScans(name)
+        name_column = list(scandata['name'])
+        belongsTo_column = list(scandata['belongsTo'])
+        execution_column = list(scandata['executionNumber'])
+        startTime_column = list(scandata['startTime'])
+        endTime_column = list(scandata['endTime'])
+        scanned_IPs_column = list(scandata['scannedIPs'])
+        status_column = list(scandata['status'])
+
+        items = len(name_column)
+        for x in range(items):
+            play_btn = QPushButton("Play")
+            play_btn.clicked.connect(
+                lambda *args, toolname= name_column[x], runname= name: self.startScan(toolname, runname))
+            play_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            pause_btn = QPushButton("Pause")
+            pause_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            stop_btn = QPushButton("Stop")
+            stop_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            self.ui.statistical_data_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
+            self.ui.statistical_data_table.setItem(x, 1, QTableWidgetItem(execution_column[x]))
+            self.ui.statistical_data_table.setItem(x, 2, QTableWidgetItem(startTime_column[x]))
+            self.ui.statistical_data_table.setItem(x, 3, QTableWidgetItem(endTime_column[x]))
+            self.ui.statistical_data_table.setItem(x, 4, QTableWidgetItem(scanned_IPs_column[x]))
+            self.ui.statistical_data_table.setItem(x, 5, QTableWidgetItem(status_column[x]))
+            self.ui.statistical_data_table.setCellWidget(x, 6, play_btn)
+            self.ui.statistical_data_table.setCellWidget(x, 7, pause_btn)
+            self.ui.statistical_data_table.setCellWidget(x, 8, stop_btn)
+
+
+    ### METHOD TO POPULATE RUN TABLE FROM DATABASE
+    def populateRunTable(self):
+        rundata = db.importRunData()
+        name_column = list(rundata['name'])
+        description_column = list(rundata['description'])
+        timestamp_column = list(rundata['timeStamp'])
+        items = len(name_column)
+
+        for x in range(items):
+            play_btn = QPushButton("Play")
+            play_btn.clicked.connect(
+                lambda *args, row=x: self.startRun(row))
+            play_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            pause_btn = QPushButton("Pause")
+            pause_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            stop_btn = QPushButton("Stop")
+            stop_btn.setStyleSheet("QPushButton {\n"  # STYLES THE BUTTON
+                                     "    color: black;\n"
+                                     "    background-color: rgb(235,235,235);\n"
+                                     "    border: 0px solid;\n"
+                                     "}\n"
+                                     "QPushButton:hover {\n"
+                                     "    background-color: rgb(85, 170, 255);\n"
+                                     "}")
+            self.ui.run_list_table.setItem(x, 0, QTableWidgetItem(name_column[x]))
+            self.ui.run_list_table.setItem(x, 1, QTableWidgetItem(description_column[x]))
+            self.ui.run_list_table.setItem(x, 2, QTableWidgetItem(timestamp_column[x]))
+            self.ui.run_list_table.setCellWidget(x, 3, play_btn)
+            self.ui.run_list_table.setCellWidget(x, 4, pause_btn)
+            self.ui.run_list_table.setCellWidget(x, 5, stop_btn)
+
+    ### METHOD TO START THE RUN
+    def startRun(self, row):
+        return row
+
+    ### METHOD TO START THE SCAN
+    def startScan(self, toolName, runName):
+
+        path = ""
+        args = ""
+        whiteList = ""
+
+        tooldata = db.importData()
+        rundata = db.importRunData()
+        #print(tooldata)
+        name_column = list(tooldata['name'])
+        args_column = list(tooldata['ouptionAndArgument'])
+        path_column = list(tooldata['path'])
+
+        runName_column = list(rundata['name'])
+
+        scandata = db.importScanData()
+
+        whiteList_column = list(rundata['whitelist'])
+
+
+        items = len(name_column)
+
+        for x in range(items):
+            if toolName == name_column[x]:
+                path = path_column[x]
+                args = args_column[x]
+
+        runItems = len(runName_column)
+        for x in range(runItems):
+            if runName == runName_column[x]:
+                whiteList = whiteList_column[x]
+        print(path + args + whiteList)
+
+        tt.executeScan(path,args,whiteList)
 
     ### METHOD TO POPULATE TOOL LIST TABLE FROM DATABASE ###
     def populateTable(self):
@@ -276,6 +422,19 @@ class MyWindow(QMainWindow):
         print("File path:" + path[0])
         self.ui.lineEdit_5.setText(path[0])
         file = path[0]
+        
+        ########XML PARSER#################
+        root = ET.parse(file).getroot()
+        Toolargs = []
+        x = 0
+        for child in root:
+            Toolargs.append(child.text)
+            print(child.text)
+
+        Toolargs.append(root[3][0][0].text)
+        Toolargs.append(root[3][0][1].text)
+
+        db.insertIntoTool(Toolargs[0], Toolargs[1], Toolargs[2], Toolargs[5], Toolargs[6])
 
         ########XML PARSER#################
         root = ET.parse(file).getroot()
@@ -304,6 +463,8 @@ class MyWindow(QMainWindow):
         path = QFileDialog.getOpenFileName()
         print("File path:"+path[0])
         self.ui.tool_path_input.setText(path[0])
+        
+        
         # file = path[0]
         #
         # with open(file, "r") as f:
